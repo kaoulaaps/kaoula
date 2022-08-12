@@ -1,0 +1,54 @@
+:root {
+    --brand-color: #7477ff;
+    --dark-color: #0f172a;
+    --mid-color: #1e293b;
+    --light-color: #ffffff;
+    --danger-color: #f66b6b;
+}
+
+body {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+/* Buttons */
+
+.btn-brand:hover {
+    background-color: var(--brand-color);
+    color: var(--light-color);
+}
+
+.btn-brand:focus {
+    background-color: var(--brand-color);
+    color: var(--light-color);
+}
+
+.btn-brand {
+    font-weight: bold;
+    background-color: var(--brand-color);
+    color: var(--light-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color) !important;
+    color: var(--light-color) !important;
+    border: none !important;
+    font-weight: bold;
+}
+
+.btn-mid {
+    background-color: var(--mid-color);
+    color: var(--light-color);
+    border: none;
+    font-weight: bold;
+}
+
+.btn-mid:hover {
+    background-color: var(--brand-color);
+    color: var(--light-color);
+}
+
+.btn-mid:focus {
+    background-color: var(--mid-color);
+    color: var(--light-color);
+}

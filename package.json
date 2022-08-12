@@ -1,0 +1,51 @@
+{
+    "name": "api",
+    "version": "1.0.0",
+    "description": "Free, safe, and secure image hosting provider for everyone!",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.1",
+        "chalk": "^3.0.0",
+        "connect-mongo": "^3.2.0",
+        "cors": "^2.8.5",
+        "dotenv": "^14.3.2",
+        "ejs": "^3.1.6",
+        "express": "^4.17.2",
+        "express-session": "^1.17.2",
+        "fs-extra": "^9.0.1",
+        "method-override": "^3.0.0",
+        "moment": "^2.29.1",
+        "mongoose": "^6.2.1",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.4",
+        "nodemailer": "^6.7.2",
+        "passport": "^0.5.2",
+        "passport-github": "^1.1.0",
+        "passport-google-oauth2": "^0.2.0",
+        "passport-google-oauth20": "^2.0.0",
+        "passport-snapchat": "^1.0.0",
+        "passport-spotify": "^2.0.0",
+        "passport-twitch": "^1.0.3",
+        "path": "^0.12.7",
+        "yourid": "^1.2.3"
+    },
+    "devDependencies": {
+        "node": "^16.13.2",
+        "tailwindcss": "^3.0.23"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lassv/imagemagik.git"
+    },
+    "bugs": {
+        "url": "https://github.com/lassv/imagemagik/issues"
+    },
+    "homepage": "https://github.com/lassv/imagemagik#readme"
+}
