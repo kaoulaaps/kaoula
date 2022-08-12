@@ -27,6 +27,28 @@ module.exports = {
         }
     },
 
+    ensureAccessToClass: function async(req, res, next) {
+        const Class = require("../database/models/Class");
+
+        Class.findById({ _id: req.params.id }, async (err, classData) => {
+            if (classData === null || !classData) {
+                res.redirect(
+                    "/classes?error=true&error_id=1&error_message=Class not found!"
+                );
+            } else {
+                if (classData.students.includes(req.user._id)) {
+                    return next();
+                } else if (classData.teacher !== req.user._id) {
+                    return next();
+                } else {
+                    res.redirect(
+                        "/classes?error=true&error_id=2&error_message=You do not have access to this class"
+                    );
+                }
+            }
+        });
+    },
+
     ensureGuest: function (req, res, next) {
         if (!req.isAuthenticated()) {
             return next();

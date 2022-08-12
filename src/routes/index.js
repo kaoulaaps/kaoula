@@ -6,6 +6,7 @@ const {
     ensureAuth,
     ensureGuest,
     ensureTeacher,
+    ensureAccessToClass,
 } = require("../middleware/requireAuth");
 
 router.get("/", ensureGuest, (req, res) => {
@@ -24,21 +25,30 @@ router.get("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     });
 });
 
-router.get("/classes/:id", ensureAuth, async (req, res) => {
-    Class.findById({ _id: req.params.id }, async (err, classData) => {
-        if (classData === null || !classData) {
-            res.redirect(
-                "/classes?error=true&error_id=1&error_message=Class not found!"
-            );
-        } else {
-            res.render("classes/show", {
-                isLoggedIn: req.isAuthenticated(),
-                user: req.user,
-                classData: classData,
-            });
-        }
-    });
-});
+router.get(
+    "/classes/:id",
+    ensureAccessToClass,
+    ensureAuth,
+    async (req, res) => {
+        Class.findById({ _id: req.params.id }, async (err, classData) => {
+            if (classData === null || !classData) {
+                res.redirect(
+                    "/classes?error=true&error_id=1&error_message=Class not found!"
+                );
+            } else {
+                res.render("classes/show", {
+                    isLoggedIn: req.isAuthenticated(),
+                    user: req.user,
+                    teacher: await User.findById({ _id: classData.teacher }),
+                    students: await User.find({
+                        _id: { $in: classData.students },
+                    }),
+                    classData: classData,
+                });
+            }
+        });
+    }
+);
 
 router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     const { name, description, image, students } = req.body;

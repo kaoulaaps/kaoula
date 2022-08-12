@@ -112,15 +112,42 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-12">
-                    <h1><%= classData.name %></h1>
+                    <h1>
+                        Velkommen til
+                        <em class="text-muted"><%= classData.name %></em>
+                    </h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 text-muted">
                     <p><%= classData.description %></p>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-12">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <a
+                        href="/profile/<%= teacher.uid %> "
+                        style="text-decoration: none; color: var(--brand-color)"
+                    >
+                        <%= teacher.name %></a
+                    >
+                </div>
+
+                <div class="col-12">
+                    <i class="fa-solid fa-user-circle"></i>
+                    <% students.forEach(function(student) { %>
+                    <a
+                        href="/profile/<%= student.uid %> "
+                        style="text-decoration: none; color: var(--brand-color)"
+                    >
+                        <%= student.name %></a
+                    >
+                    <% }) %>
                 </div>
             </div>
         </div>
