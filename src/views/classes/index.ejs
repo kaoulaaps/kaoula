@@ -154,7 +154,13 @@
                         </div>
                     </div>
                     <% } %>
-                </div>
+
+                    <% if (studentClasses.length == 0) { %>
+                    <div class="alert alert-info" role="alert">
+                        Du har ikke tilmeldt nogen klasser.
+
+                     </div>                  
+                    <% } %>
             </div>
         </div>
 

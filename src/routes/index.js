@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../database/models/User");
 const Class = require("../database/models/Class");
+const Post = require("../database/models/Post");
 
 const {
     ensureAuth,
@@ -21,7 +22,7 @@ router.get("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     res.render("classes/new", {
         isLoggedIn: req.isAuthenticated(),
         user: req.user,
-        users: await User.find({ role: 0 }),
+        users: await User.find({}),
     });
 });
 
@@ -44,6 +45,7 @@ router.get(
                         _id: { $in: classData.students },
                     }),
                     classData: classData,
+                    posts: await Post.find({ class: classData._id }),
                 });
             }
         });
@@ -61,9 +63,22 @@ router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
         students: students,
     });
 
-    console.table(newClass);
     await newClass.save();
     res.redirect(`/classes/${newClass._id}`);
+});
+
+router.post("/classes/new/post", ensureAuth, async (req, res) => {
+    const { title, content, classid } = req.body;
+
+    const newPost = new Post({
+        title,
+        content,
+        user: [req.user.name, req.user._id, req.user.avatar, req.user.uid],
+        class: classid,
+    });
+
+    await newPost.save();
+    res.redirect(`/classes/${classid}?post=${newPost._id}`);
 });
 
 router.get("/classes", ensureAuth, async (req, res) => {
