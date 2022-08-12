@@ -13,7 +13,7 @@ passport.use(
         async function (accessToken, refreshToken, profile, done) {
             const newUser = {
                 uid: profile.id,
-                name: profile.displayName,
+                name: profile.username,
                 username: profile.username,
                 provider: profile.provider,
                 avatar: profile.photos[0].value,

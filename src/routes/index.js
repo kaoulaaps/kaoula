@@ -52,6 +52,27 @@ router.get(
     }
 );
 
+router.get("/classes/:id/join", ensureAuth, async (req, res) => {
+    Class.findByIdAndUpdate(
+        { _id: req.params.id },
+        { $push: { students: [req.user._id] } },
+        { new: true },
+        (err, classData) => {
+            if (err) {
+                res.redirect(
+                    "/classes?error=true&error_id=3&error_message=Error joining class"
+                );
+            } else {
+                res.redirect(
+                    "/classes/" +
+                        classData._id +
+                        "?success=true&success_message=You have successfully joined the class"
+                );
+            }
+        }
+    );
+});
+
 router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     const { name, description, image, students } = req.body;
 

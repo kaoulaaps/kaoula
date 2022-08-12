@@ -116,6 +116,73 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Dine klasser:</h1>
+
+                    <button
+                        class="btn btn-mid mb-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#join"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+
+                    <div
+                        class="modal fade"
+                        id="join"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-dark">
+                                        Join en ny klasse
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form">
+                                        <div class="form-group">
+                                            <label for="classId"
+                                                >Klasse ID</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="classId"
+                                                name="classId"
+                                                placeholder="Klasse ID"
+                                                required
+                                            />
+                                        </div>
+                                        <hr />
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Annuler
+                                        </button>
+                                        <button
+                                            class="btn btn-success"
+                                            type="submit"
+                                        >
+                                            <i
+                                                class="fa-solid fa-hand-point-right"
+                                            ></i>
+                                            Join
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <% if (user.role == 5) { %> <% for (let classData of
                     teacherClasses) { %>
 
@@ -153,16 +220,94 @@
                             </a>
                         </div>
                     </div>
-                    <% } %>
-
-                    <% if (studentClasses.length == 0) { %>
+                    <% } %> <% if (studentClasses.length == 0) { %>
                     <div class="alert alert-info" role="alert">
                         Du har ikke tilmeldt nogen klasser.
+                    </div>
 
-                     </div>                  
+                    <button
+                        class="btn btn-mid"
+                        data-bs-toggle="modal"
+                        data-bs-target="#join"
+                    >
+                        Tilmeld dig en ny klasse
+                    </button>
+
+                    <div
+                        class="modal fade"
+                        id="join"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-dark">
+                                        Join en ny klasse
+                                    </h5>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form">
+                                        <div class="form-group">
+                                            <label for="classId"
+                                                >Klasse ID</label
+                                            >
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="classId"
+                                                name="classId"
+                                                placeholder="Klasse ID"
+                                                required
+                                            />
+                                        </div>
+                                        <hr />
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger"
+                                            data-bs-dismiss="modal"
+                                        >
+                                            Annuler
+                                        </button>
+                                        <button
+                                            class="btn btn-success"
+                                            type="submit"
+                                        >
+                                            <i
+                                                class="fa-solid fa-hand-point-right"
+                                            ></i>
+                                            Join
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <% } %>
+                </div>
             </div>
         </div>
+
+        <script>
+            const form = document.getElementById("form");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const classId = document.getElementById("classId").value;
+
+                const url = `/classes/${classId}/join`;
+
+                window.location.href = url;
+            });
+        </script>
 
         <!-- Scripts -->
         <script
