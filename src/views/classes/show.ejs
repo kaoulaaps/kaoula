@@ -21,14 +21,14 @@
             referrerpolicy="no-referrer"
         />
         <!-- Custom -->
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="../../style.css" />
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img
-                        src="./kaoula.png"
+                        src="../../kaoula.png"
                         alt="Kaoula Logo"
                         class="rounded-circle"
                         width="45"
@@ -79,7 +79,7 @@
                                 </a>
                                 <a class="dropdown-item" href="/classes">
                                     <i class="fa-solid fa-chalkboard-user"></i>
-                                    Mine klasser
+                                    Min klasse
                                 </a>
 
                                 <% if (user.role == 5) { %>
@@ -111,6 +111,19 @@
                 </div>
             </div>
         </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1><%= classData.name %></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-muted">
+                    <p><%= classData.description %></p>
+                </div>
+            </div>
+        </div>
 
         <!-- Scripts -->
         <script

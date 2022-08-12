@@ -21,14 +21,14 @@
             referrerpolicy="no-referrer"
         />
         <!-- Custom -->
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="../../style.css" />
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img
-                        src="./kaoula.png"
+                        src="../../kaoula.png"
                         alt="Kaoula Logo"
                         class="rounded-circle"
                         width="45"
@@ -79,7 +79,7 @@
                                 </a>
                                 <a class="dropdown-item" href="/classes">
                                     <i class="fa-solid fa-chalkboard-user"></i>
-                                    Mine klasser
+                                    Min klasse
                                 </a>
 
                                 <% if (user.role == 5) { %>
@@ -111,6 +111,52 @@
                 </div>
             </div>
         </nav>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Dine klasser:</h1>
+                    <% if (user.role == 5) { %> <% for (let classData of
+                    teacherClasses) { %>
+
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">
+                                <%= classData.name %>
+                            </h5>
+                            <p class="card-text text-muted">
+                                <%= classData.description %>
+                            </p>
+                            <a
+                                href="/classes/<%= classData.id %>"
+                                class="btn btn-mid"
+                            >
+                                Go til klasse
+                            </a>
+                        </div>
+                    </div>
+                    <% } %> <% } %> <% if (user.role == 0) { %> <% for (let
+                    userClassData of studentClasses) { %>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">
+                                <%= userClassData.name %>
+                            </h5>
+                            <p class="card-text text-muted">
+                                <%= userClassData.description %>
+                            </p>
+                            <a
+                                href="/classes/<%= userClassData.id %>"
+                                class="btn btn-mid"
+                            >
+                                Go til klasse
+                            </a>
+                        </div>
+                    </div>
+                    <% } %> <% } %>
+                </div>
+            </div>
+        </div>
 
         <!-- Scripts -->
         <script

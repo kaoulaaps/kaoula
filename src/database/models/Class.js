@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { generate } = require("yourid");
 
 const ClassSchema = new mongoose.Schema({
-    id: {
+    classId: {
         type: String,
         required: true,
         default: generate({
@@ -22,7 +22,11 @@ const ClassSchema = new mongoose.Schema({
 
     image: {
         type: String,
-        required: true,
+    },
+
+    teacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
     },
 
     students: {

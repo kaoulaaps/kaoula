@@ -152,17 +152,12 @@
                                 required
                             >
                                 <% for (let student of users) { %>
+                                <img src="<%= student.avatar %> " />
                                 <option value="<%= student.id %>">
                                     <%= student.name %>
                                 </option>
                                 <% } %>
                             </select>
-
-                            <input
-                                type="hidden"
-                                name="user_id"
-                                value="<%= user.id %>"
-                            />
                         </div>
 
                         <button type="submit" class="btn btn-mid">
