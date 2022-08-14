@@ -105,10 +105,14 @@ router.get(
 );
 
 router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
-    let { name, description, image, students, private } = req.body;
+    let { name, description, image, students, private, maxStudents } = req.body;
 
     if (private == undefined) {
         private = "off";
+    }
+
+    if (maxStudents == undefined) {
+        maxStudents = "30";
     }
 
     const newClass = new Class({
@@ -118,11 +122,10 @@ router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
         teacher: req.user._id,
         students: students,
         private,
+        maxStudents,
     });
 
     await newClass.save();
-
-    console.log(private);
 
     res.redirect(`/classes/${newClass._id}`);
 });

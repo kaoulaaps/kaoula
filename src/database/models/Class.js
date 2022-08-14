@@ -39,6 +39,12 @@ const ClassSchema = new mongoose.Schema({
         required: true,
         default: false,
     },
+
+    maxStudents: {
+        type: String,
+        required: true,
+        default: "30",
+    },
 });
 
 module.exports = mongoose.model("Class", ClassSchema);

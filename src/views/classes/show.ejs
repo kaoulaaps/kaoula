@@ -149,6 +149,17 @@
                     >
                     <% }) %> (<%= students.length %>)
                 </div>
+
+                <% if (user.uid == teacher.uid) { %> 
+                <div class="col-12">
+                    <i class="fa-solid fa-gear"></i>
+                    <a
+                        href="/classes/<%= classData.id %>/settings"
+                        style="text-decoration: none; color: var(--brand-color)"
+                    >Indstillinger</a>
+                    </a>
+                </div>
+                <% } %>
             </div>
             <hr />
 
@@ -189,7 +200,8 @@
                         />
                         <div class="form-group">
                             <button class="btn btn-brand btn-sm" type="submit">
-                                <i class="fa-solid fa-paper-plane-top"></i> Send
+                                <i class="fa-solid fa-share"></i>
+                                Send
                             </button>
                         </div>
                     </form>

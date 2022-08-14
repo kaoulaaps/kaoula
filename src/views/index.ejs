@@ -139,14 +139,30 @@
                     <div
                         class="d-grid gap-2 d-md-flex justify-content-md-start"
                     >
+                        <% if (user) { %>
+
+                        <a class="btn btn-brand" href="/classes">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                            Mine klasser
+                        </a>
+
+                        <% if (user.role == 5) { %>
+                        <a class="btn btn-brand" href="/classes/new">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Lav en ny klasse
+                        </a>
+                        <% } %> <% } else { %>
                         <a
                             type="button"
                             class="btn btn-brand btn-lg px-4 me-md-2"
                             href="/auth/github"
+                            aria-disabled="true"
+                            disabled
                         >
                             <i class="fa-brands fa-github"></i> Log på med
                             Github
                         </a>
+                        <% } %>
                     </div>
                 </div>
             </div>
