@@ -6,6 +6,8 @@
     --danger-color: #f66b6b;
 }
 
+/* Disabled */
+
 body {
     background-color: var(--dark-color);
     color: var(--light-color);

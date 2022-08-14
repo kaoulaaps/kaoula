@@ -114,18 +114,39 @@
 
         <div class="container-fluid mt-5">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="list-group">
-                        <a class="list-group-item list-group-item-action">
-                            <i class="fa-solid fa-chalkboard-user"></i> Min
-                            klasse
-                        </a>
+                <div class="col-md-3 mb-4">
+                    <div class="list-group" style="cursor: pointer">
                         <a
-                            href="/classes/new"
+                            href="/classes/<%= classData.id %>/settings?action=EDIT"
                             class="list-group-item list-group-item-action"
                         >
-                            <i class="fa-solid fa-user-plus"></i> Lav en ny
-                            klasse
+                            <i class="fa-solid fa-pencil"></i> Rediger
+                        </a>
+                        <a
+                            href="/classes/<%= classData.id %>/settings?action=MANAGE_STUDENTS"
+                            class="list-group-item list-group-item-action"
+                        >
+                            <i class="fa-solid fa-user-friends"></i>
+                            <% if (classData.students.length > 0) { %>
+                            <span
+                                class="badge badge-pill"
+                                style="background-color: var(--brand-color)"
+                                ><%= classData.students.length %></span
+                            >
+                            <% } %> Håndter studerende
+                        </a>
+                        <a
+                            href="/classes/<%= classData.id %>/settings?action=NEW_STUDENT"
+                            class="list-group-item list-group-item-action"
+                        >
+                            <i class="fa-solid fa-user-plus"></i> Tilføj en ny
+                            elev
+                        </a>
+                        <a
+                            href="/classes/<%= classData.id %>/settings?action=DELETE_CLASS"
+                            class="list-group-item list-group-item-action bg-danger text-light"
+                        >
+                            <i class="fa-solid fa-trash-alt"></i> Slet klasse
                         </a>
                     </div>
                 </div>
@@ -140,13 +161,343 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <% if (actions.edit) { %>
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5 class="card-title text-muted">
-                                                <%= classData.name %>
+                                            <h5 class="card-title text-dark">
+                                                <i
+                                                    class="fa-solid fa-pencil"
+                                                ></i>
+                                                Rediger klasse
                                             </h5>
+
+                                            <form
+                                                action="/classes/new/update"
+                                                method="POST"
+                                            >
+                                                <input
+                                                    type="hidden"
+                                                    name="action"
+                                                    value="EDIT"
+                                                />
+                                                <input
+                                                    type="hidden"
+                                                    name="classId"
+                                                    value="<%= classData.id %>"
+                                                />
+
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="className"
+                                                        class="text-muted"
+                                                    >
+                                                        Klasse navn
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="className"
+                                                        name="name"
+                                                        value="<%= classData.name %>"
+                                                    />
+                                                </div>
+
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="classDescription"
+                                                        class="text-muted"
+                                                    >
+                                                        Klasse beskrivelse
+                                                    </label>
+                                                    <textarea
+                                                        class="form-control"
+                                                        id="classDescription"
+                                                        name="description"
+                                                        rows="3"
+                                                    >
+<%= classData.description %></textarea
+                                                    >
+                                                </div>
+
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="maxStudents"
+                                                        class="text-muted"
+                                                        >Maks antal elever
+                                                    </label>
+
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        id="maxStudents"
+                                                        name="maxStudents"
+                                                        value="<%= classData.maxStudents %>"
+                                                    />
+                                                </div>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-mid"
+                                                >
+                                                    <i
+                                                        class="fa-solid fa-pencil"
+                                                    ></i>
+                                                    Updater klasse
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
+                                    <% } %> <% if (actions.manage_students) { %>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title text-dark">
+                                                <i
+                                                    class="fa-solid fa-user-friends"
+                                                ></i>
+                                                <% if (classData.students.length
+                                                > 0) { %>
+                                                <span
+                                                    class="badge badge-pill"
+                                                    style="
+                                                        background-color: var(
+                                                            --brand-color
+                                                        );
+                                                    "
+                                                    ><%=
+                                                    classData.students.length
+                                                    %></span
+                                                >
+                                                <% } %> Håndter studerende
+                                            </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <% if
+                                                    (classData.students.length >
+                                                    0) { %>
+                                                    <table
+                                                        class="table table-striped"
+                                                    >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Navn</th>
+                                                                <th>ID</th>
+                                                                <th>Email</th>
+                                                                <th>
+                                                                    Provider
+                                                                </th>
+                                                                <th>
+                                                                    <i
+                                                                        class="fa-solid fa-cogs"
+                                                                    ></i>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% for (let student
+                                                            of students) { %>
+                                                            <tr>
+                                                                <td
+                                                                    class="text-muted"
+                                                                >
+                                                                    <img
+                                                                        src="<%=
+                                                                    student.avatar %>"
+                                                                        alt="<%=
+                                                                    student.name %>"
+                                                                        class="img-fluid rounded-circle"
+                                                                        style="
+                                                                            width: 27px;
+                                                                            height: 27px;
+                                                                        "
+                                                                    />
+                                                                    <%=
+                                                                    student.name
+                                                                    %> <% if
+                                                                    (student.uid
+                                                                    ==
+                                                                    teacher.uid)
+                                                                    { %>
+                                                                    <span
+                                                                        class="badge badge-pill"
+                                                                        style="
+                                                                            background-color: var(
+                                                                                --brand-color
+                                                                            );
+                                                                        "
+                                                                    >
+                                                                        Lærer
+                                                                    </span>
+                                                                    <% } %>
+                                                                </td>
+                                                                <td
+                                                                    class="text-muted"
+                                                                >
+                                                                    <%=
+                                                                    student.uid
+                                                                    %>
+                                                                </td>
+                                                                <td
+                                                                    class="text-muted"
+                                                                >
+                                                                    null
+                                                                </td>
+
+                                                                <td
+                                                                    class="text-muted"
+                                                                >
+                                                                    <%=
+                                                                    student.provider
+                                                                    %>
+                                                                </td>
+
+                                                                <td
+                                                                    class="text-muted"
+                                                                >
+                                                                    <form
+                                                                        action="/classes/<%= classData.id %>/removeMember"
+                                                                        method="POST"
+                                                                    >
+                                                                        <input
+                                                                            type="hidden"
+                                                                            name="uid"
+                                                                            value="<%= student.id %>"
+                                                                        />
+
+                                                                        <button
+                                                                            class="btn btn-danger btn-sm"
+                                                                        >
+                                                                            <i
+                                                                                class="fa-solid fa-trash"
+                                                                            ></i>
+                                                                            Smid
+                                                                            Ud
+                                                                        </button>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                            <% } %>
+                                                        </tbody>
+                                                    </table>
+                                                    <% } else { %>
+                                                    <p class="text-muted">
+                                                        Ingen studerende
+                                                        tilknyttet denne klasse
+                                                    </p>
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %> <% if (actions.new_student) { %>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form
+                                                action="/classes/new/update/students"
+                                                method="POST"
+                                            >
+                                                <input
+                                                    type="hidden"
+                                                    name="classId"
+                                                    value="<%= classData.id %>"
+                                                />
+
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="students"
+                                                        class="text-muted"
+                                                        >Vælg studerende</label
+                                                    >
+
+                                                    <select
+                                                        class="form-control"
+                                                        id="students"
+                                                        name="students[]"
+                                                        multiple
+                                                    >
+                                                        <% for (let st of users)
+                                                        { %>
+                                                        <option
+                                                            value="<%=
+                                                            st.uid %>"
+                                                        >
+                                                            <%= st.name %>
+                                                        </option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-mid"
+                                                >
+                                                    <i
+                                                        class="fa-solid fa-user-plus"
+                                                    ></i>
+                                                    Tilføj studerende
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% } %> <% if (actions.delete_class) { %>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form
+                                                action="/classes/<%= classData.id %>/delete"
+                                                method="POST"
+                                            >
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="students"
+                                                        class="text-dark"
+                                                        >Bekræft sletning af
+                                                        klasse</label
+                                                    >
+                                                    <input
+                                                        type="text"
+                                                        id="delete-class-confirm"
+                                                        name="confirm"
+                                                        class="form-control mb-3"
+                                                        onkeyup="
+                                                            if (
+                                                                this.value ==
+                                                                '<%= classData.name %>'
+                                                            ) {
+                                                                document.getElementById(
+                                                                    'delete-class-submit'
+                                                                ).disabled = false;
+                                                            } else {
+                                                                document.getElementById(
+                                                                    'delete-class-submit'
+                                                                ).disabled = true;
+                                                            }"
+                                                        placeholder="Skriv klassens navn for at slette den"
+                                                    />
+
+                                                    <p class="text-muted">
+                                                        <%=
+                                                        classData.students.length
+                                                        %> studerende tilknyttet
+                                                        denne klasse
+                                                    </p>
+                                                </div>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-danger btn-sm"
+                                                    id="delete-class-submit"
+                                                    disabled
+                                                >
+                                                    <i
+                                                        class="fa-solid fa-trash"
+                                                    ></i>
+                                                    Slet klasse
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

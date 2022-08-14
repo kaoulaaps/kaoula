@@ -18,7 +18,7 @@ router.get("/", ensureGuest, (req, res) => {
     });
 });
 
-// Classes
+// New class registration
 router.get("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     res.render("classes/new", {
         isLoggedIn: req.isAuthenticated(),
@@ -27,6 +27,7 @@ router.get("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     });
 });
 
+// Show class
 router.get(
     "/classes/:id",
     ensureAccessToClass,
@@ -53,6 +54,7 @@ router.get(
     }
 );
 
+// Render settings page
 router.get(
     "/classes/:id/settings",
     ensureTeacher,
@@ -71,13 +73,44 @@ router.get(
                     students: await User.find({
                         _id: { $in: classData.students },
                     }),
+                    users: await User.find({}),
                     classData: classData,
+                    actions: {
+                        edit: req.query.action === "EDIT",
+                        manage_students: req.query.action === "MANAGE_STUDENTS",
+                        new_student: req.query.action === "NEW_STUDENT",
+                        delete_class: req.query.action === "DELETE_CLASS",
+                    },
                 });
             }
         });
     }
 );
 
+// Delete class
+router.post(
+    "/classes/:id/delete",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res) => {
+        Class.findByIdAndDelete(
+            { _id: req.params.id },
+            async (err, classData) => {
+                if (classData === null || !classData) {
+                    res.redirect(
+                        "/classes?error=true&error_id=1&error_message=Class not found!"
+                    );
+                } else {
+                    res.redirect(
+                        "/classes?success=true&success_id=1&success_message=Class deleted successfully!"
+                    );
+                }
+            }
+        );
+    }
+);
+
+// Join new class
 router.get(
     "/classes/:id/join",
     ensurePriaveClass,
@@ -104,6 +137,34 @@ router.get(
     }
 );
 
+// Remove student from class
+router.post(
+    "/classes/:id/removeMember",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res) => {
+        Class.findByIdAndUpdate(
+            { _id: req.params.id },
+            { $pull: { students: req.body.uid } },
+            { new: true },
+            (err, classData) => {
+                if (err) {
+                    res.redirect(
+                        "/classes?error=true&error_id=3&error_message=Error removing student"
+                    );
+                } else {
+                    res.redirect(
+                        "/classes/" +
+                            classData._id +
+                            "?success=true&success_message=Student removed from class"
+                    );
+                }
+            }
+        );
+    }
+);
+
+// New class
 router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     let { name, description, image, students, private, maxStudents } = req.body;
 
@@ -112,6 +173,10 @@ router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     }
 
     if (maxStudents == undefined) {
+        maxStudents = "30";
+    }
+
+    if (!maxStudents) {
         maxStudents = "30";
     }
 
@@ -130,7 +195,8 @@ router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     res.redirect(`/classes/${newClass._id}`);
 });
 
-router.post("/classes/new/post", ensureAuth, async (req, res) => {
+// New class post
+router.post("/classes/new/post", ensureAuth, async (req, res, next) => {
     const { title, content, classid } = req.body;
 
     const newPost = new Post({
@@ -143,6 +209,95 @@ router.post("/classes/new/post", ensureAuth, async (req, res) => {
     await newPost.save();
     res.redirect(`/classes/${classid}?post=${newPost._id}`);
 });
+
+// Update a class
+router.post(
+    "/classes/new/update",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res, next) => {
+        const { name, description, maxStudents } = req.body;
+
+        if (maxStudents == undefined) {
+            maxStudents = "30";
+        }
+
+        if (!maxStudents) {
+            maxStudents = "30";
+        }
+
+        try {
+            Class.findByIdAndUpdate(
+                { _id: req.body.classId },
+                {
+                    name,
+                    description,
+                    maxStudents,
+                },
+                { new: true },
+                (err, classData) => {
+                    if (err) {
+                        res.redirect(
+                            "/classes?error=true&error_id=3&error_message=Error updating class"
+                        );
+                    } else {
+                        res.redirect(
+                            "/classes/" +
+                                classData._id +
+                                "?success=true&success_message=You have successfully updated the class"
+                        );
+                    }
+                }
+            );
+        } catch (error) {
+            res.send({
+                error: true,
+                error_id: 3,
+                error_message: error.message,
+            });
+
+            next();
+        }
+    }
+);
+
+// Update classes students
+router.post(
+    "/classes/new/update/students",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res, next) => {
+        const { students } = req.body;
+
+        try {
+            Class.findByIdAndUpdate(
+                { _id: req.body.classId },
+                { students },
+                { new: true },
+                (err, classData) => {
+                    if (err) {
+                        res.redirect(
+                            "/classes?error=true&error_id=3&error_message=Error updating class&psg=" +
+                                err.message
+                        );
+                    } else {
+                        res.redirect(
+                            "/classes/" +
+                                classData._id +
+                                "?success=true&success_message=You have successfully updated the class"
+                        );
+                    }
+                }
+            );
+        } catch (error) {
+            res.send({
+                error: true,
+                error_id: 3,
+                error_message: error.message,
+            });
+        }
+    }
+);
 
 router.get("/classes", ensureAuth, async (req, res) => {
     res.render("classes/index", {
