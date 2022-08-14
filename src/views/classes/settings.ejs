@@ -365,6 +365,26 @@
                                                                             value="<%= student.id %>"
                                                                         />
 
+                                                                        <!-- if the users id equals to the student when disable the button -->
+                                                                        <% if
+                                                                        (student.uid
+                                                                        ==
+                                                                        user.uid)
+                                                                        { %>
+                                                                        <button
+                                                                            class="btn btn-danger btn-sm"
+                                                                            disabled
+                                                                        >
+                                                                            <i
+                                                                                class="fa-solid fa-trash"
+                                                                            ></i>
+                                                                            Smid
+                                                                            Ud
+                                                                        </button>
+
+                                                                        <% }
+                                                                        else {
+                                                                        %>
                                                                         <button
                                                                             class="btn btn-danger btn-sm"
                                                                         >
@@ -374,6 +394,7 @@
                                                                             Smid
                                                                             Ud
                                                                         </button>
+                                                                        <% } %>
                                                                     </form>
                                                                 </td>
                                                             </tr>

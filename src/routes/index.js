@@ -308,4 +308,25 @@ router.get("/classes", ensureAuth, async (req, res) => {
     });
 });
 
+// Profile Routes
+router.get("/profile/:id", ensureAuth, async (req, res) => {
+    const user = await User.findOne({ uid: req.params.id });
+
+    if (!user) {
+        res.redirect("/");
+    } else {
+        res.render("profile", {
+            isLoggedIn: req.isAuthenticated(),
+            user: req.user,
+            profileUser: user,
+        });
+    }
+});
+
+// Errors
+// 404
+router.get("*", (req, res) => {
+    res.render("errors/404");
+});
+
 module.exports = router;
