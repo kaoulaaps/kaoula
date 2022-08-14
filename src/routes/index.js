@@ -18,6 +18,11 @@ router.get("/", ensureGuest, (req, res) => {
     });
 });
 
+// Fix routes
+router.get("/profile", ensureAuth, async (req, res) => {
+    res.redirect("/profile/" + req.user.uid);
+});
+
 // New class registration
 router.get("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     res.render("classes/new", {
