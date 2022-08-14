@@ -33,6 +33,12 @@ const ClassSchema = new mongoose.Schema({
         type: [mongoose.Schema.Types.ObjectId],
         ref: "User",
     },
+
+    private: {
+        type: String,
+        required: true,
+        default: false,
+    },
 });
 
 module.exports = mongoose.model("Class", ClassSchema);

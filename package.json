@@ -34,6 +34,7 @@
         "passport-spotify": "^2.0.0",
         "passport-twitch": "^1.0.3",
         "path": "^0.12.7",
+        "servemon": "^2.0.5",
         "yourid": "^1.2.3"
     },
     "devDependencies": {

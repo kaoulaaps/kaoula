@@ -112,143 +112,48 @@
             </div>
         </nav>
 
-        <div class="container mt-5">
+        <!-- settings dashboard for the classes -->
+        <div class="container-fluid mt-5">
             <div class="row">
-                <div class="col-12">
-                    <h1>
-                        Velkommen til
-                        <em class="text-muted"><%= classData.name %></em>
-                    </h1>
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action">
+                            <i class="fa-solid fa-chalkboard-user"></i> Min
+                            klasse
+                        </a>
+                        <a
+                            href="/classes/new"
+                            class="list-group-item list-group-item-action"
+                        >
+                            <i class="fa-solid fa-user-plus"></i> Lav en ny
+                            klasse
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-muted">
-                    <p><%= classData.description %></p>
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-12">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                    <a
-                        href="/profile/<%= teacher.uid %> "
-                        style="text-decoration: none; color: var(--brand-color)"
-                    >
-                        <%= teacher.name %></a
-                    >
-                </div>
-
-                <div class="col-12 mb-2">
-                    <i class="fa-solid fa-user-circle"></i>
-                    <% students.forEach(function(student) { %>
-                    <a
-                        href="/profile/<%= student.uid %> "
-                        style="text-decoration: none; color: var(--brand-color)"
-                    >
-                        <%= student.name %></a
-                    >
-                    <% }) %> (<%= students.length %>)
-                </div>
-            </div>
-            <hr />
-
-            <% if (user.role == 5) { %>
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="fs-5">Skriv en ny feed</h2>
-                </div>
-
-                <div class="col-12">
-                    <form action="/classes/new/post" method="POST">
-                        <div class="form-group mb-1">
-                            <label for="title">Titel</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="title"
-                                name="title"
-                                placeholder="Titel"
-                                required
-                            />
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <textarea
-                                type="text"
-                                name="content"
-                                id="content"
-                                placeholder="Indtast din post"
-                                class="form-control"
-                            ></textarea>
-                        </div>
-
-                        <input
-                            type="hidden"
-                            name="classid"
-                            value="<%= classData.id %>"
-                        />
-                        <div class="form-group">
-                            <button class="btn btn-brand btn-sm" type="submit">
-                                <i class="fa-solid fa-paper-plane-top"></i> Send
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <hr />
-            <% } %>
-
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="text-muted">
-                        <i
-                            class="fa-solid fa-comment-dots"
-                            style="color: var(--brand-color) !important"
-                        ></i>
-                        Feed
-                    </h3>
-                </div>
-            </div>
-
-            <hr />
-
-            <div class="row">
-                <% posts.forEach(function(post) { %>
-                <div class="col-12 mb-2">
+                <div class="col-md-9">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-header">
                             <h5 class="card-title text-dark">
-                                <%= post.title %>
+                                <i class="fa-solid fa-chalkboard-user"></i> Min
+                                klasse
                             </h5>
-                            <p class="card-text text-muted">
-                                <%= post.content %>
-                            </p>
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    <img
-                                        src="<%= post.user[2] %>"
-                                        alt="<%= post.user[1] %>"
-                                        class="rounded-circle"
-                                        width="25"
-                                        height="25"
-                                    />
-                                    <a href="/profile/<%= post.user[3] %>"
-                                        ><%= post.user[0] %>
-                                        <span class="badge bg-success">
-                                            Lærer
-                                        </span>
-                                    </a>
-                                </small>
-                            </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title text-muted">
+                                                <%= classData.name %>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <% }) %> <% if (posts.length == 0) { %>
-            <div class="alert alert-info alert-sm" role="alert">
-                Der er intet nyt i denne klasse endnu.
-            </div>
-            <% } %>
         </div>
 
         <!-- Scripts -->

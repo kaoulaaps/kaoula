@@ -8,6 +8,7 @@ const {
     ensureGuest,
     ensureTeacher,
     ensureAccessToClass,
+    ensurePriaveClass,
 } = require("../middleware/requireAuth");
 
 router.get("/", ensureGuest, (req, res) => {
@@ -52,29 +53,63 @@ router.get(
     }
 );
 
-router.get("/classes/:id/join", ensureAuth, async (req, res) => {
-    Class.findByIdAndUpdate(
-        { _id: req.params.id },
-        { $push: { students: [req.user._id] } },
-        { new: true },
-        (err, classData) => {
-            if (err) {
+router.get(
+    "/classes/:id/settings",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res) => {
+        Class.findById({ _id: req.params.id }, async (err, classData) => {
+            if (classData === null || !classData) {
                 res.redirect(
-                    "/classes?error=true&error_id=3&error_message=Error joining class"
+                    "/classes?error=true&error_id=1&error_message=Class not found!"
                 );
             } else {
-                res.redirect(
-                    "/classes/" +
-                        classData._id +
-                        "?success=true&success_message=You have successfully joined the class"
-                );
+                res.render("classes/settings", {
+                    isLoggedIn: req.isAuthenticated(),
+                    user: req.user,
+                    teacher: await User.findById({ _id: classData.teacher }),
+                    students: await User.find({
+                        _id: { $in: classData.students },
+                    }),
+                    classData: classData,
+                });
             }
-        }
-    );
-});
+        });
+    }
+);
+
+router.get(
+    "/classes/:id/join",
+    ensurePriaveClass,
+    ensureAuth,
+    async (req, res) => {
+        Class.findByIdAndUpdate(
+            { _id: req.params.id },
+            { $push: { students: [req.user._id] } },
+            { new: true },
+            (err, classData) => {
+                if (err) {
+                    res.redirect(
+                        "/classes?error=true&error_id=3&error_message=Error joining class"
+                    );
+                } else {
+                    res.redirect(
+                        "/classes/" +
+                            classData._id +
+                            "?success=true&success_message=You have successfully joined the class"
+                    );
+                }
+            }
+        );
+    }
+);
 
 router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
-    const { name, description, image, students } = req.body;
+    let { name, description, image, students, private } = req.body;
+
+    if (private == undefined) {
+        private = "off";
+    }
 
     const newClass = new Class({
         name,
@@ -82,9 +117,13 @@ router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
         image,
         teacher: req.user._id,
         students: students,
+        private,
     });
 
     await newClass.save();
+
+    console.log(private);
+
     res.redirect(`/classes/${newClass._id}`);
 });
 
