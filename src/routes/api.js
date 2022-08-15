@@ -10,7 +10,7 @@ router.get("/classes",  async (req,res) => {
                     id: d.classId,
                     name: d.name,
                     description: d.description,
-                    teacher: d.teacher.uid,
+                    teacher: d.teacher,
                     students: d.students.length,
                     private: d.private,
                     maxStudents: d.maxStudents,
