@@ -53,7 +53,9 @@ router.get(
                         _id: { $in: classData.students },
                     }),
                     classData: classData,
-                    posts: await Post.find({ class: classData._id }),
+                    posts: await Post.find({ class: classData._id }).sort({
+                        createdAt: -1,
+                    }),
                 });
             }
         });
@@ -86,6 +88,7 @@ router.get(
                         manage_students: req.query.action === "MANAGE_STUDENTS",
                         new_student: req.query.action === "NEW_STUDENT",
                         delete_class: req.query.action === "DELETE_CLASS",
+                        no_action_selcted: !req.query.action,
                     },
                 });
             }
