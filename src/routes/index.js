@@ -2,6 +2,9 @@ const router = require("express").Router();
 const User = require("../database/models/User");
 const Class = require("../database/models/Class");
 const Post = require("../database/models/Post");
+const Thread = require("../database/models/Thread");
+const Message = require("../database/models/Message");
+const { generate } = require("yourid");
 const Moment = require("moment");
 
 const {
@@ -366,6 +369,53 @@ router.post("/profile/:id/update", ensureAuth, async (req, res) => {
         res.redirect("/profile/" + user.uid);
     }
 }),
+    // Messages
+    // Render new message form
+    router.get("/messages/new", ensureAuth, async (req, res) => {
+        res.render("messages/new", {
+            isLoggedIn: req.isAuthenticated(),
+            user: req.user,
+            users: await User.find({}),
+        });
+    });
+
+// Create Message
+router.post("/messages/new", ensureAuth, async (req, res) => {
+    const { title, subject, users } = req.body;
+
+    const newThread = new Thread({
+        tid: generate({
+            length: 15,
+            keyspace: "012345678910012345678910012345678910",
+        }),
+        title,
+        subject,
+        users,
+    });
+
+    await newThread.save();
+    res.redirect(`/messages/${newThread.tid}`);
+}),
+    // Render Thread
+    router.get("/messages/:id", ensureAuth, async (req, res) => {
+        const thread = await Thread.findOne({ tid: req.params.id });
+
+        if (!thread) {
+            res.redirect("/");
+        } else if (thread.users.includes(req.user.id)) {
+            res.render("messages/index", {
+                isLoggedIn: req.isAuthenticated(),
+                user: req.user,
+                thread: thread,
+                threadUser: await User.find({
+                    _id: { $in: thread.users },
+                }),
+                messages: await Message.find({ tid: req.params.id }),
+            });
+        } else {
+            res.redirect("/");
+        }
+    }),
     // Errors
     // 404
     router.get("*", (req, res) => {
