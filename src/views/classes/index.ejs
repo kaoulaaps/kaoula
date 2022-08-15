@@ -183,26 +183,7 @@
                         </div>
                     </div>
 
-                    <% if (user.role == 5) { %> <% for (let classData of
-                    teacherClasses) { %>
-
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title text-dark">
-                                <%= classData.name %>
-                            </h5>
-                            <p class="card-text text-muted">
-                                <%= classData.description %>
-                            </p>
-                            <a
-                                href="/classes/<%= classData.id %>"
-                                class="btn btn-mid"
-                            >
-                                Go til klasse
-                            </a>
-                        </div>
-                    </div>
-                    <% } %> <% } %> <% for (let userClassData of studentClasses)
+                   <% for (let userClassData of studentClasses)
                     { %>
                     <div class="card mb-3">
                         <div class="card-body">
@@ -216,7 +197,7 @@
                                 href="/classes/<%= userClassData.id %>"
                                 class="btn btn-mid"
                             >
-                                Go til klasse
+                                Gå til klasse
                             </a>
                         </div>
                     </div>
