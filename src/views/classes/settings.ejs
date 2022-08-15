@@ -120,14 +120,13 @@
                             href="/classes/<%= classData.id %>/settings?action=EDIT"
                             class="list-group-item list-group-item-action"
                         >
-                            <i class="fa-solid fa-pencil"></i> Rediger
+                            ✏ Rediger
                         </a>
                         <a
                             href="/classes/<%= classData.id %>/settings?action=MANAGE_STUDENTS"
                             class="list-group-item list-group-item-action"
                         >
-                            <i class="fa-solid fa-user-friends"></i>
-                            <% if (classData.students.length > 0) { %>
+                            👥 <% if (classData.students.length > 0) { %>
                             <span
                                 class="badge badge-pill"
                                 style="background-color: var(--brand-color)"
@@ -139,14 +138,13 @@
                             href="/classes/<%= classData.id %>/settings?action=NEW_STUDENT"
                             class="list-group-item list-group-item-action"
                         >
-                            <i class="fa-solid fa-user-plus"></i> Tilføj en ny
-                            elev
+                            ➕Tilføj en ny elev
                         </a>
                         <a
                             href="/classes/<%= classData.id %>/settings?action=DELETE_CLASS"
                             class="list-group-item list-group-item-action bg-danger text-light"
                         >
-                            <i class="fa-solid fa-trash-alt"></i> Slet klasse
+                            🗑 Slet klasse
                         </a>
                     </div>
                 </div>
@@ -341,7 +339,13 @@
                                                                 <td
                                                                     class="text-muted"
                                                                 >
-                                                                    null
+                                                                    <% if
+                                                                    (student.email)
+                                                                    { %> <%=
+                                                                    student.email
+                                                                    %> <% } else
+                                                                    { %> Ingen
+                                                                    data <% } %>
                                                                 </td>
 
                                                                 <td
@@ -365,7 +369,6 @@
                                                                             value="<%= student.id %>"
                                                                         />
 
-                                                                        <!-- if the users id equals to the student when disable the button -->
                                                                         <% if
                                                                         (student.uid
                                                                         ==
@@ -415,12 +418,12 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <form
-                                                action="/classes/new/update/students"
+                                                action="/classes/new/update/invite"
                                                 method="POST"
                                             >
                                                 <input
                                                     type="hidden"
-                                                    name="classId"
+                                                    name="class_id"
                                                     value="<%= classData.id %>"
                                                 />
 
@@ -428,25 +431,16 @@
                                                     <label
                                                         for="students"
                                                         class="text-muted"
-                                                        >Vælg studerende</label
+                                                        >Skriv elevens ID</label
                                                     >
 
-                                                    <select
+                                                    <input
+                                                        type="text"
+                                                        name="uid"
                                                         class="form-control"
                                                         id="students"
-                                                        name="students[]"
-                                                        multiple
-                                                    >
-                                                        <% for (let st of users)
-                                                        { %>
-                                                        <option
-                                                            value="<%=
-                                                            st.uid %>"
-                                                        >
-                                                            <%= st.name %>
-                                                        </option>
-                                                        <% } %>
-                                                    </select>
+                                                        placeholder="ID"
+                                                    />
                                                 </div>
 
                                                 <button

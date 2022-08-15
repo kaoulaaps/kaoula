@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../database/models/User");
 const Class = require("../database/models/Class");
 const Post = require("../database/models/Post");
+const Moment = require("moment");
 
 const {
     ensureAuth,
@@ -268,38 +269,34 @@ router.post(
 
 // Update classes students
 router.post(
-    "/classes/new/update/students",
+    "/classes/new/update/invite",
     ensureTeacher,
     ensureAuth,
-    async (req, res, next) => {
-        const { students } = req.body;
+    async (req, res) => {
+        let { uid } = req.body;
 
-        try {
+        let userId = await User.findOne({ uid: uid });
+
+        if (userId) {
             Class.findByIdAndUpdate(
-                { _id: req.body.classId },
-                { students },
+                { _id: req.body.class_id },
+                { $push: { students: userId._id } },
                 { new: true },
                 (err, classData) => {
                     if (err) {
                         res.redirect(
-                            "/classes?error=true&error_id=3&error_message=Error updating class&psg=" +
+                            "/classes?error=true&error_id=3&error_message=Error inviting student&psg=" +
                                 err.message
                         );
                     } else {
                         res.redirect(
                             "/classes/" +
                                 classData._id +
-                                "?success=true&success_message=You have successfully updated the class"
+                                "?success=true&success_message=Student invited successfully"
                         );
                     }
                 }
             );
-        } catch (error) {
-            res.send({
-                error: true,
-                error_id: 3,
-                error_message: error.message,
-            });
         }
     }
 );
@@ -324,14 +321,52 @@ router.get("/profile/:id", ensureAuth, async (req, res) => {
             isLoggedIn: req.isAuthenticated(),
             user: req.user,
             profileUser: user,
+            formatUserBirthdayToDanish: Moment(user.birthday)
+                .locale("da")
+                .format("DD/MM/YYYY"),
         });
     }
 });
 
-// Errors
-// 404
-router.get("*", (req, res) => {
-    res.render("errors/404");
+// Edit
+router.get("/profile/:id/edit", ensureAuth, async (req, res) => {
+    const user = await User.findOne({ uid: req.params.id });
+
+    if (req.user.uid != user.uid) {
+        res.redirect("/");
+    } else if (!user) {
+        res.redirect("/");
+    } else {
+        res.render("edit", {
+            isLoggedIn: req.isAuthenticated(),
+            user: req.user,
+            profileUser: user,
+        });
+    }
 });
+// Update
+router.post("/profile/:id/update", ensureAuth, async (req, res) => {
+    const { name, email, phone, birthday } = req.body;
+
+    const user = await User.findOne({ uid: req.params.id });
+
+    if (req.user.uid != user.uid) {
+        res.redirect("/");
+    } else if (!user) {
+        res.redirect("/");
+    } else {
+        user.name = name;
+        user.email = email;
+        user.phone = phone;
+        user.birthday = birthday;
+        await user.save();
+        res.redirect("/profile/" + user.uid);
+    }
+}),
+    // Errors
+    // 404
+    router.get("*", (req, res) => {
+        res.render("errors/404");
+    });
 
 module.exports = router;

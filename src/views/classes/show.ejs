@@ -77,13 +77,13 @@
                                     <i class="fa-solid fa-user-circle"></i>
                                     Mine oplysninger
                                 </a>
-                                <a class="dropdown-item" href="/classes">
+                                <a class="dropdown-item" href="/classData">
                                     <i class="fa-solid fa-chalkboard-user"></i>
                                     Min klasse
                                 </a>
 
                                 <% if (user.role == 5) { %>
-                                <a class="dropdown-item" href="/classes/new">
+                                <a class="dropdown-item" href="/classData/new">
                                     <i class="fa-solid fa-user-plus"></i>
                                     Lav en ny klasse
                                 </a>
@@ -112,155 +112,227 @@
             </div>
         </nav>
 
-        <div class="container mt-5">
+        <div class="container mt-3">
             <div class="row">
-                <div class="col-12">
-                    <h1>
-                        Velkommen til
-                        <em class="text-muted"><%= classData.name %></em>
-                    </h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-muted">
-                    <p><%= classData.description %></p>
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-12">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                    <a
-                        href="/profile/<%= teacher.uid %> "
-                        style="text-decoration: none; color: var(--brand-color)"
-                    >
-                        <%= teacher.name %></a
-                    >
-                </div>
-
-                <div class="col-12 mb-2">
-                    <i class="fa-solid fa-user-circle"></i>
-                    <% students.forEach(function(student) { %>
-                    <a
-                        href="/profile/<%= student.uid %> "
-                        style="text-decoration: none; color: var(--brand-color)"
-                    >
-                        <%= student.name %></a
-                    >
-                    <% }) %> (<%= students.length %>)
-                </div>
-
-                <% if (user.uid == teacher.uid) { %> 
-                <div class="col-12">
-                    <i class="fa-solid fa-gear"></i>
-                    <a
-                        href="/classes/<%= classData.id %>/settings"
-                        style="text-decoration: none; color: var(--brand-color)"
-                    >Indstillinger</a>
-                    </a>
-                </div>
-                <% } %>
-            </div>
-            <hr />
-
-            <% if (user.role == 5) { %>
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="fs-5">Skriv en ny feed</h2>
-                </div>
-
-                <div class="col-12">
-                    <form action="/classes/new/post" method="POST">
-                        <div class="form-group mb-1">
-                            <label for="title">Titel</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="title"
-                                name="title"
-                                placeholder="Titel"
-                                required
-                            />
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <textarea
-                                type="text"
-                                name="content"
-                                id="content"
-                                placeholder="Indtast din post"
-                                class="form-control"
-                            ></textarea>
-                        </div>
-
-                        <input
-                            type="hidden"
-                            name="classid"
-                            value="<%= classData.id %>"
-                        />
-                        <div class="form-group">
-                            <button class="btn btn-brand btn-sm" type="submit">
-                                <i class="fa-solid fa-share"></i>
-                                Send
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <hr />
-            <% } %>
-
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="text-muted">
-                        <i
-                            class="fa-solid fa-comment-dots"
-                            style="color: var(--brand-color) !important"
-                        ></i>
-                        Feed
-                    </h3>
-                </div>
-            </div>
-
-            <hr />
-
-            <div class="row">
-                <% posts.forEach(function(post) { %>
-                <div class="col-12 mb-2">
+                <div class="col-md-3 mb-3">
                     <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-dark"><%= classData.name%></h4>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title text-dark">
-                                <%= post.title %>
-                            </h5>
-                            <p class="card-text text-muted">
-                                <%= post.content %>
-                            </p>
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    <img
-                                        src="<%= post.user[2] %>"
-                                        alt="<%= post.user[1] %>"
-                                        class="rounded-circle"
-                                        width="25"
-                                        height="25"
-                                    />
-                                    <a href="/profile/<%= post.user[3] %>"
-                                        ><%= post.user[0] %>
-                                        <span class="badge bg-success">
-                                            Lærer
-                                        </span>
+                            <ul class="nav nav-pills flex-column">
+                                <li class="nav-item mb-2">
+                                    <a
+                                        class="nav-link active"
+                                        style="
+                                            background-color: var(
+                                                --brand-color
+                                            );
+                                            font-weight: bold;
+                                            cursor: pointer;
+                                        "
+                                        data-toggle="tab"
+                                        role="tab"
+                                    >
+                                        🌎 Overblik
                                     </a>
-                                </small>
-                            </p>
+                                </li>
+                                <li class="nav-item mb-2">
+                                    <a
+                                        class="nav-link"
+                                        style="
+                                            background-color: rgb(
+                                                223,
+                                                223,
+                                                223
+                                            );
+                                            color: rgb(134, 134, 134);
+                                            font-weight: bold;
+                                            cursor: pointer;
+                                        "
+                                        data-toggle="tab"
+                                        role="tab"
+                                    >
+                                        📝 Lektier
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-2">
+                                    <a
+                                        class="nav-link"
+                                        style="
+                                            background-color: rgb(
+                                                223,
+                                                223,
+                                                223
+                                            );
+                                            color: rgb(134, 134, 134);
+                                            font-weight: bold;
+                                            cursor: pointer;
+                                        "
+                                        data-toggle="tab"
+                                        role="tab"
+                                        disabled
+                                    >
+                                        📅 Kalender
+                                    </a>
+                                </li>
+
+                                <% if (user.role == 5) { %>
+                                <li class="nav-item mb-2">
+                                    <a
+                                        href="/classes/<%= classData.id %>/settings"
+                                        class="nav-link"
+                                        style="
+                                            background-color: rgb(
+                                                223,
+                                                223,
+                                                223
+                                            );
+                                            color: rgb(134, 134, 134);
+                                            font-weight: bold;
+                                            cursor: pointer;
+                                        "
+                                        data-toggle="tab"
+                                        role="tab"
+                                    >
+                                        ⚙️ Indstillinger
+                                    </a>
+                                </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-muted">Overblik</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body">
+                                                <% for (let post of posts) { %>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4 class="text-dark">
+                                                            <%= post.title %>
+                                                        </h4>
+                                                    </div>
+                                                    <div
+                                                        class="card-body text-muted"
+                                                    >
+                                                        <%= post.content %>
+                                                    </div>
+
+                                                    <div class="card-footer">
+                                                        <div class="d-flex">
+                                                            <img
+                                                                src="<%= post.user[2] %>"
+                                                                alt="<%= post.user[0] %>"
+                                                                class="rounded-circle"
+                                                                width="25"
+                                                                height="25"
+                                                            />
+                                                            <div class="ml-5">
+                                                                <a
+                                                                    href="/profile/<%= post.user[1] %>"
+                                                                    style="
+                                                                        text-decoration: none;
+                                                                        margin-left: 6px !important;
+                                                                        text-transform: capitalize;
+                                                                    "
+                                                                >
+                                                                    <%=
+                                                                    post.user[0]
+                                                                    %>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+
+                                                <hr class="text-dark" />
+
+                                                <% if (posts.length == 0) { %>
+                                                <div class="alert alert-info">
+                                                    <i
+                                                        class="fa-solid fa-info-circle"
+                                                    ></i>
+                                                    Der er endnu ikke nogen
+                                                    indlæg i denne klasse.
+                                                </div>
+                                                <% } %>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <form
+                                                            action="/classes/new/post"
+                                                            method="POST"
+                                                        >
+                                                            <input
+                                                                type="hidden"
+                                                                name="classid"
+                                                                value="<%= classData.id %>"
+                                                            />
+
+                                                            <div
+                                                                class="form-group"
+                                                            >
+                                                                <label
+                                                                    for="title"
+                                                                >
+                                                                    Titel
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="title"
+                                                                    name="title"
+                                                                    placeholder="Titel på indlæg"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                class="form-group mb-2"
+                                                            >
+                                                                <label
+                                                                    for="content"
+                                                                >
+                                                                    Indhold
+                                                                </label>
+                                                                <textarea
+                                                                    class="form-control"
+                                                                    id="content"
+                                                                    name="content"
+                                                                    rows="3"
+                                                                    placeholder="Indhold af dit indlæg"
+                                                                    required
+                                                                ></textarea>
+                                                            </div>
+                                                            <button
+                                                                type="submit"
+                                                                class="btn btn-mid btn-sm"
+                                                            >
+                                                                <i
+                                                                    class="fa-solid fa-plus"
+                                                                ></i>
+                                                                Tilføj opslag
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <% }) %> <% if (posts.length == 0) { %>
-            <div class="alert alert-info alert-sm" role="alert">
-                Der er intet nyt i denne klasse endnu.
-            </div>
-            <% } %>
         </div>
 
         <!-- Scripts -->
