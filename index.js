@@ -21,7 +21,10 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "src/views"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+if (process.env.NODE_ENV === "development") {
+    app.use(morgan("dev"));
+}
+
 app.use(
     cors({
         origin: ["http://localhost:3000", "http://127.0.0.1:5500"],
