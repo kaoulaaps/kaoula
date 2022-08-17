@@ -127,11 +127,84 @@
 
                     <hr />
                 </div>
-
-                <!-- messages -->
-                <div class="col-md-12">\&&
             </div>
         </div>
+
+        <div class="container">
+            <div class="col-md-12">
+                <% if (messages.length == 0) { %>
+                <p class="text-muted mb-5">
+                    <i class="fa-solid fa-comment-dots"></i> Ingen beskeder
+                    endnu
+                </p>
+                <% } %> <% messages.map((message) => { %>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p class="text-muted"><%= message.content %></p>
+
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <img
+                                    src="<%= message.user[2] %>"
+                                    alt="<%= message.user[3]  %>"
+                                    class="rounded-circle"
+                                    width="25"
+                                    height="25"
+                                />
+                                <a
+                                    href="/profile/<%= message.user[3] %>"
+                                    class="small mb-0 ms-2"
+                                    >@<%= message.user[0] %></a
+                                >
+                            </div>
+                            <% if (message.user[3] == user.uid) { %>
+                            <form
+                                class="d-flex flex-row align-items-center"
+                                action="/messages/<%= message._id %>/delete"
+                                method="post"
+                            >
+                                <button
+                                    type="submit"
+                                    style="border: none; background: none"
+                                    class="text-danger"
+                                >
+                                    <i class="fa-solid fa-trash-alt"></i>
+                                </button>
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+
+                <% }) %>
+                <form
+                    class="mb-4 container"
+                    action="/messages/new"
+                    method="post"
+                >
+                    <hr size="10" />
+
+                    <input type="hidden" name="tid" value="<%= thread._id %>" />
+                    <div class="form-group mb-2">
+                        <textarea
+                            class="form-control"
+                            name="content"
+                            rows="3"
+                            placeholder="Skriv en besked som <%= user.name %>..."
+                        ></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="messageSubmit"
+                        class="btn btn-mid btn-sm"
+                    >
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <!-- Scripts -->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

@@ -380,7 +380,7 @@ router.post("/profile/:id/update", ensureAuth, async (req, res) => {
     });
 
 // Create Message
-router.post("/messages/new", ensureAuth, async (req, res) => {
+router.post("/messages/new/thread", ensureAuth, async (req, res) => {
     const { title, subject, users } = req.body;
 
     const newThread = new Thread({
@@ -394,28 +394,48 @@ router.post("/messages/new", ensureAuth, async (req, res) => {
     });
 
     await newThread.save();
-    res.redirect(`/messages/${newThread.tid}`);
+    res.redirect(`/messages/t/${newThread._id}`);
 }),
-    // Render Thread
-    router.get("/messages/:id", ensureAuth, async (req, res) => {
-        const thread = await Thread.findOne({ tid: req.params.id });
+    // Create new Message
+    router.post("/messages/new", ensureAuth, async (req, res) => {
+        let { content, tid } = req.body;
 
-        if (!thread) {
-            res.redirect("/");
-        } else if (thread.users.includes(req.user.id)) {
-            res.render("messages/index", {
-                isLoggedIn: req.isAuthenticated(),
-                user: req.user,
-                thread: thread,
-                threadUser: await User.find({
-                    _id: { $in: thread.users },
-                }),
-                messages: await Message.find({ tid: req.params.id }),
-            });
-        } else {
-            res.redirect("/");
-        }
-    }),
+        const newMessage = new Message({
+            content,
+            tid,
+            user: [req.user.name, req.user._id, req.user.avatar, req.user.uid],
+        });
+
+        await newMessage.save();
+        res.redirect(`/messages/t/${tid}`);
+    });
+
+// Render Thread
+router.get("/messages/t/:id", ensureAuth, async (req, res) => {
+    const thread = await Thread.findById(req.params.id);
+
+    if (!thread) {
+        res.redirect("/");
+    } else if (thread.users.includes(req.user.id)) {
+        res.render("messages/index", {
+            isLoggedIn: req.isAuthenticated(),
+            user: req.user,
+            thread: thread,
+            threadUser: await User.find({
+                _id: { $in: thread.users },
+            }),
+            messages: await Message.find({ tid: req.params.id }),
+        });
+
+        console.log(
+            await User.find({
+                _id: { $in: thread.messages },
+            })
+        );
+    } else {
+        res.redirect("/");
+    }
+}),
     // Errors
     // 404
     router.get("*", (req, res) => {

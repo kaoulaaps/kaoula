@@ -7,6 +7,12 @@ const MessageSchema = new mongoose.Schema(
             required: true,
         },
 
+        tid: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Thread",
+            required: true,
+        },
+
         user: {
             type: [String],
             required: true,
