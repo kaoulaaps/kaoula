@@ -156,28 +156,33 @@
                                     class="small mb-0 ms-2"
                                     >@<%= message.user[0] %></a
                                 >
+                                -
                             </div>
-                            <% if (message.user[3] == user.uid) { %>
-                            <form
-                                class="d-flex flex-row align-items-center"
-                                action="/messages/delete"
-                                method="post"
-                            >
-                                <input
-                                    type="hidden"
-                                    name="mid"
-                                    value="<%= message._id %>"
-                                />
 
-                                <button
-                                    type="submit"
-                                    style="border: none; background: none"
-                                    class="text-danger"
-                                >
-                                    <i class="fa-solid fa-trash-alt"></i>
-                                </button>
-                            </form>
-                            <% } %>
+                            <div class="d-flex flex-row align-items-center">
+                                <span class="small mb-0 text-muted">
+                                    <%= message.createdAt.toLocaleDateString()
+                                    %>
+                                </span>
+
+                                <% if (message.user[3] == user.uid) { %>
+                                <form action="/messages/delete" method="post">
+                                    <input
+                                        type="hidden"
+                                        name="mid"
+                                        value="<%= message._id %>"
+                                    />
+
+                                    <button
+                                        type="submit"
+                                        style="border: none; background: none"
+                                        class="text-danger"
+                                    >
+                                        <i class="fa-solid fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 </div>
