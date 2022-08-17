@@ -77,13 +77,13 @@
                                     <i class="fa-solid fa-user-circle"></i>
                                     Mine oplysninger
                                 </a>
-                                <a class="dropdown-item" href="/classData">
+                                <a class="dropdown-item" href="/classes">
                                     <i class="fa-solid fa-chalkboard-user"></i>
                                     Min klasse
                                 </a>
 
                                 <% if (user.role == 5) { %>
-                                <a class="dropdown-item" href="/classData/new">
+                                <a class="dropdown-item" href="/classes/new">
                                     <i class="fa-solid fa-user-plus"></i>
                                     Lav en ny klasse
                                 </a>
@@ -112,103 +112,39 @@
             </div>
         </nav>
 
-        <!-- message thread -->
-        <div class="container text-center mt-5">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12">
-                    <h1><%= thread.title %></h1>
-                    <p class="text-muted fs-5"><%= thread.subject %></p>
+                    <h1>Dine beskedtråde:</h1>
 
-                    Deltagere: <% threadUser.map((user) => { %>
-                    <a href="/profile/<%= user.uid %>" class="text-muted"
-                        ><%= user.name %></a
-                    >
-                    <% }) %>
+                    <a href="/messages/new" class="btn btn-mid mb-2">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
 
-                    <hr />
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="col-md-12">
-                <% if (messages.length == 0) { %>
-                <p class="text-muted mb-5">
-                    <i class="fa-solid fa-comment-dots"></i> Ingen beskeder
-                    endnu
-                </p>
-                <% } %> <% messages.map((message) => { %>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <p class="text-muted"><%= message.content %></p>
-
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center">
-                                <img
-                                    src="<%= message.user[2] %>"
-                                    alt="<%= message.user[3]  %>"
-                                    class="rounded-circle"
-                                    width="25"
-                                    height="25"
-                                />
-                                <a
-                                    href="/profile/<%= message.user[3] %>"
-                                    class="small mb-0 ms-2"
-                                    >@<%= message.user[0] %></a
-                                >
-                            </div>
-                            <% if (message.user[3] == user.uid) { %>
-                            <form
-                                class="d-flex flex-row align-items-center"
-                                action="/messages/delete"
-                                method="post"
+                    <% for (let thread of threads) { %>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">
+                                <%= thread.title %>
+                            </h5>
+                            <p class="card-text text-muted">
+                                <%= thread.subject %>
+                            </p>
+                            <a
+                                href="/messages/t/<%= thread._id %>"
+                                class="btn btn-mid"
                             >
-                                <input
-                                    type="hidden"
-                                    name="mid"
-                                    value="<%= message._id %>"
-                                />
-
-                                <button
-                                    type="submit"
-                                    style="border: none; background: none"
-                                    class="text-danger"
-                                >
-                                    <i class="fa-solid fa-trash-alt"></i>
-                                </button>
-                            </form>
-                            <% } %>
+                                Gå til besked
+                            </a>
                         </div>
                     </div>
-                </div>
-
-                <% }) %>
-                <form
-                    class="mb-4 container"
-                    action="/messages/new"
-                    method="post"
-                >
-                    <hr size="10" />
-
-                    <input type="hidden" name="tid" value="<%= thread._id %>" />
-                    <div class="form-group mb-2">
-                        <textarea
-                            class="form-control"
-                            name="content"
-                            rows="3"
-                            style="width: 100%; height: 15%; resize: none"
-                            placeholder="Skriv en besked som <%= user.name %>..."
-                        ></textarea>
+                    <% } %> <% if (threads.length == 0) { %>
+                    <div class="alert alert-info" role="alert">
+                        Du har ikke oprettet nogen beskedtråde endnu.
                     </div>
 
-                    <button
-                        type="submit"
-                        id="messageSubmit"
-                        class="btn btn-mid btn-sm"
-                    >
-                        Send
-                    </button>
-                </form>
+                    <% } %>
+                </div>
             </div>
         </div>
 

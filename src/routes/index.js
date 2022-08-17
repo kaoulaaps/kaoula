@@ -426,20 +426,37 @@ router.get("/messages/t/:id", ensureAuth, async (req, res) => {
             }),
             messages: await Message.find({ tid: req.params.id }),
         });
-
-        console.log(
-            await User.find({
-                _id: { $in: thread.messages },
-            })
-        );
     } else {
         res.redirect("/");
     }
 }),
-    // Errors
-    // 404
-    router.get("*", (req, res) => {
-        res.render("errors/404");
+    // Message List
+    router.get("/messages", ensureAuth, async (req, res) => {
+        res.render("messages/list", {
+            isLoggedIn: req.isAuthenticated(),
+            user: req.user,
+            threads: await Thread.find({ users: req.user.id }),
+        });
     });
+
+// Delete Message
+router.post("/messages/delete", ensureAuth, async (req, res) => {
+    const msg = await Message.findById(req.body.mid);
+
+    if (req.user.uid != msg.user[3]) {
+        res.redirect("/");
+    } else {
+        await Message.findByIdAndDelete(req.body.mid);
+        res.redirect(
+            `/messages/t/${msg.tid}?success=true&success_message=Message deleted`
+        );
+    }
+});
+
+// Errors
+// 404
+router.get("*", (req, res) => {
+    res.render("errors/404");
+});
 
 module.exports = router;
