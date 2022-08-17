@@ -1,4 +1,60 @@
-## Like aula.dk but better 😎
+<p align="center">
+  <a href="https://kaoula.hypll.org">
+    <img src="https://kaoula.hypll.org/kaoula.png" alt="Kaoula logo" width="200" height="165">
+  </a>
+</p>
 
+<h3 align="center">Kaoula</h3>
 
-Dette er en skole platform der gør det nemt at oprette klasser og oprette og administrere klasser. Du kan give dine elever lektier for, samt oprette opgaver til dem. Der er også muglighed for at skrive med dine elever i grupper hvor det er dig der bestemmer hvem der kan skrive/se.
+<p align="center">
+  Next Generation School Program 🚀
+<br>
+
+<div align="center">
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?style=plastic)](https://github.com/lassv/kaoula/blob/master/LICENSE)
+
+</div>
+
+---
+
+## About
+
+Kaoula is a next generation school program. There you can have classes with gruops of students. With cool features like:
+
+-   Give homework to your students
+-   Message your students
+-   Overwiew where you can share news information.
+-   Create a calendar for your students.
+-   Join classes with a invite code.
+-   Teacher settings dashboard where you can control your class.
+-   And much more.
+
+## Images
+
+[![](https://i.ibb.co/mc7zctM/kaula-example.png)](https://kaoula.hypll.org)
+[![](https://i.ibb.co/DzBpZ1R/settings-kaula.png)](https://kaoula.hypll.org)
+[![](https://i.ibb.co/TR5sSLp/userdasuhboard.png)](https://kaoula.hypll.org)
+
+## Local Setup
+
+Download the source code
+
+```bash
+git clone https://github.com/lassv/kaoula.git
+```
+
+Install dependencies
+
+```bash
+pnpm install
+```
+
+Run the server
+
+```bash
+cd kaoula
+pnpm dev
+```
+
+Then go to <code>http://localhost:2000</code>.
