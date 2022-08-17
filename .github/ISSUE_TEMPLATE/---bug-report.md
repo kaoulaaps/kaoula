@@ -2,8 +2,8 @@
 name: "\U0001F680 Bug report"
 about: Create a report to help us improve
 title: ''
-labels: ''
-assignees: ''
+labels: 'pending'
+assignees: 'lassv'
 
 ---
 
