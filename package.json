@@ -1,6 +1,6 @@
 {
     "name": "kaoula",
-    "version": "0.1.beta-2",
+    "version": "0.0.0",
     "description": "Next Generation School Program 🚀",
     "main": "index.js",
     "scripts": {
