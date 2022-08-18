@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "dev": "nodemon index.js"
+        "dev": "nodemon index.js",
+        "fly": "node scripts/fly.js"
     },
     "keywords": [],
     "author": "",
@@ -20,6 +21,7 @@
         "express": "^4.17.2",
         "express-session": "^1.17.2",
         "fs-extra": "^9.0.1",
+        "inquirer": "8.2.0",
         "method-override": "^3.0.0",
         "moment": "^2.29.1",
         "mongoose": "^6.2.1",
