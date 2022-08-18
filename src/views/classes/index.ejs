@@ -183,8 +183,7 @@
                         </div>
                     </div>
 
-                   <% for (let userClassData of studentClasses)
-                    { %>
+                    <% for (let userClassData of studentClasses) { %>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title text-dark">
@@ -194,7 +193,7 @@
                                 <%= userClassData.description %>
                             </p>
                             <a
-                                href="/classes/<%= userClassData.id %>"
+                                href="/classes/<%= userClassData.id %>?action=OVERVIEW"
                                 class="btn btn-mid"
                             >
                                 Gå til klasse

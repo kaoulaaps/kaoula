@@ -4,6 +4,7 @@ const Class = require("../database/models/Class");
 const Post = require("../database/models/Post");
 const Thread = require("../database/models/Thread");
 const Message = require("../database/models/Message");
+const Homework = require("../database/models/Homework");
 const { generate } = require("yourid");
 const Moment = require("moment");
 
@@ -60,6 +61,36 @@ router.get(
                         createdAt: -1,
                     }),
                 });
+            }
+        });
+    }
+);
+
+// Show homework
+router.get(
+    "/classes/:id/homework",
+    ensureAccessToClass,
+    ensureAuth,
+    async (req, res) => {
+        Class.findById({ _id: req.params.id }, async (err, classData) => {
+            if (classData === null || !classData) {
+                res.redirect(
+                    "/classes?error=true&error_id=1&error_message=Class not found!"
+                );
+            } else {
+                res.render("classes/homework", {
+                    isLoggedIn: req.isAuthenticated(),
+                    user: req.user,
+                    teacher: await User.findById({ _id: classData.teacher }),
+                    students: await User.find({
+                        _id: { $in: classData.students },
+                    }),
+                    classData: classData,
+                    homework: await Homework.find({ class: classData._id }),
+                    today: Moment().format("YYYY-MM-DD"),
+                });
+
+                console.log(`Date today: ${Moment().format("YYYY-MM-DD")}`);
             }
         });
     }
@@ -222,6 +253,30 @@ router.post("/classes/new/post", ensureAuth, async (req, res, next) => {
     await newPost.save();
     res.redirect(`/classes/${classid}?post=${newPost._id}`);
 });
+
+// New Homework
+router.post(
+    "/classes/new/homework",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res, next) => {
+        const { title, description, subject, dueDate, classId } = req.body;
+
+        const newHomework = new Homework({
+            title,
+            description,
+            subject,
+            teacher: req.user._id,
+            class: classId,
+            dueDate,
+        });
+
+        await newHomework.save();
+        res.redirect(
+            `/classes/${classId}?homework=${newHomework._id}&psg=setTrueToFalse`
+        );
+    }
+);
 
 // Update a class
 router.post(

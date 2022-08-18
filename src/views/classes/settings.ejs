@@ -535,50 +535,69 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <form
-                                                action="/classes/<%= classData.id %>/new/homework"
+                                                action="/classes/new/homework"
                                                 method="POST"
                                             >
+                                                <input
+                                                    type="hidden"
+                                                    name="classId"
+                                                    value="<%= classData.id %>"
+                                                />
+
                                                 <div class="form-group mb-3">
                                                     <label
-                                                        for="homework"
+                                                        for="title"
                                                         class="text-muted mb-1"
-                                                        >Opret ny lektie
+                                                        >Title
+                                                    </label>
+
+                                                    <input
+                                                        type="text"
+                                                        name="title"
+                                                        class="form-control"
+                                                        placeholder="Title på din lektien."
+                                                        required
+                                                        oninvalid="this.setCustomValidity('Din lektie skal have en title.')"
+                                                    />
+                                                </div>
+
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="description"
+                                                        class="text-muted mb-1"
+                                                        >Hvad er lektien?
                                                     </label>
                                                     <textarea
-                                                        name="homework"
                                                         class="form-control"
-                                                        id="homework"
+                                                        id="description"
+                                                        name="description"
                                                         rows="3"
-                                                        placeholder="Skriv din opgave"
+                                                        placeholder="Skriv lektien her..."
+                                                        required
+                                                        oninvalid="this.setCustomValidity('Du skal skrive hvad lektien handler om.')"
                                                     ></textarea>
                                                 </div>
 
                                                 <div class="form-group mb-3">
                                                     <label
-                                                        for="homework"
+                                                        for="subject"
                                                         class="text-muted mb-1"
                                                         >Fag:
                                                     </label>
 
-                                                    <select
+                                                    <input
+                                                        type="text"
+                                                        name="subject"
                                                         class="form-control"
-                                                        id="homework"
-                                                    >
-                                                        <option>
-                                                            Vælg Fag
-                                                        </option>
-
-                                                        <option
-                                                            name="matematik"
-                                                        >
-                                                            Matematik:
-                                                        </option>
-                                                    </select>
+                                                        placeholder="Hvad fag? Fx Matematik eller dansk."
+                                                        required
+                                                        oninvalid="this.setCustomValidity('Du skal skrive et fag lektien handler om.')"
+                                                    />
                                                 </div>
 
                                                 <div class="form-group mb-3">
                                                     <label
-                                                        for="homework"
+                                                        for="dueDate"
                                                         class="text-muted mb-1"
                                                         >Hvornår er lektien til
                                                         for?
@@ -590,6 +609,8 @@
                                                         class="form-control"
                                                         id="homework"
                                                         placeholder="Skriv din opgave"
+                                                        required
+                                                        oninvalid="this.setCustomValidity('Du skal angive et tidpunkt hvor lektien er til.')"
                                                     />
                                                 </div>
 
