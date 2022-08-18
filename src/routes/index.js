@@ -91,6 +91,7 @@ router.get(
                         manage_students: req.query.action === "MANAGE_STUDENTS",
                         new_student: req.query.action === "NEW_STUDENT",
                         delete_class: req.query.action === "DELETE_CLASS",
+                        homework: req.query.action === "HOMEWORK",
                         no_action_selcted: !req.query.action,
                     },
                 });

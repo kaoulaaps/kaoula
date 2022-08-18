@@ -135,6 +135,12 @@
                             <% } %> Håndter studerende
                         </a>
                         <a
+                            href="/classes/<%= classData.id %>/settings?action=HOMEWORK"
+                            class="list-group-item list-group-item-action"
+                        >
+                            📝 Opret lektier
+                        </a>
+                        <a
                             href="/classes/<%= classData.id %>/settings?action=NEW_STUDENT"
                             class="list-group-item list-group-item-action"
                         >
@@ -524,6 +530,80 @@
                                         <p class="text-muted">
                                             Du har ikke valgt nogen handling
                                         </p>
+                                    </div>
+                                    <% } %> <% if (actions.homework) { %>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form
+                                                action="/classes/<%= classData.id %>/new/homework"
+                                                method="POST"
+                                            >
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="homework"
+                                                        class="text-muted mb-1"
+                                                        >Opret ny lektie
+                                                    </label>
+                                                    <textarea
+                                                        name="homework"
+                                                        class="form-control"
+                                                        id="homework"
+                                                        rows="3"
+                                                        placeholder="Skriv din opgave"
+                                                    ></textarea>
+                                                </div>
+
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="homework"
+                                                        class="text-muted mb-1"
+                                                        >Fag:
+                                                    </label>
+
+                                                    <select
+                                                        class="form-control"
+                                                        id="homework"
+                                                    >
+                                                        <option>
+                                                            Vælg Fag
+                                                        </option>
+
+                                                        <option
+                                                            name="matematik"
+                                                        >
+                                                            Matematik:
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="homework"
+                                                        class="text-muted mb-1"
+                                                        >Hvornår er lektien til
+                                                        for?
+                                                    </label>
+
+                                                    <input
+                                                        type="date"
+                                                        name="dueDate"
+                                                        class="form-control"
+                                                        id="homework"
+                                                        placeholder="Skriv din opgave"
+                                                    />
+                                                </div>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-mid"
+                                                >
+                                                    <i
+                                                        class="fa-solid fa-pencil-alt"
+                                                    ></i>
+                                                    Opret
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                     <% } %>
                                 </div>
