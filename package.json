@@ -1,7 +1,7 @@
 {
-    "name": "api",
-    "version": "1.0.0",
-    "description": "Free, safe, and secure image hosting provider for everyone!",
+    "name": "kaoula",
+    "version": "0.1.beta-2",
+    "description": "Next Generation School Program 🚀",
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
