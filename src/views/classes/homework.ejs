@@ -316,7 +316,17 @@
                                                     <i
                                                         class="fa-solid fa-info-circle"
                                                     ></i>
-                                                    Du har igen lektier for 🥳
+
+                                                    <% if (user.role == 5) { %>
+                                                    Der er ingen lektier for
+                                                    dine elever,
+                                                    <a
+                                                        style="color: #055160"
+                                                        href="/classes/<%= classData.id %>/settings?action=HOMEWORK"
+                                                    >
+                                                        vil du opret nogen?</a
+                                                    ><% } else { %> Du har igen
+                                                    lektier for 🥳 <% } %>
                                                 </div>
                                                 <% } %>
                                             </div>
