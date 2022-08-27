@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://kaoula.hypll.org">
-    <img src="https://kaoula.hypll.org/kaoula.png" alt="Kaoula logo" width="200" height="165">
+  <a href="https://kaoula.fly.dev">
+    <img src="https://kaoula.fly.dev/kaoula.png" alt="Kaoula logo" width="200" height="165">
   </a>
 </p>
 
