@@ -510,6 +510,10 @@ router.post("/messages/delete", ensureAuth, async (req, res) => {
 });
 
 // Errors
+// The /classData error
+router.get("/classData", (req, res) => {
+    res.redirect("/classes");
+});
 // 404
 router.get("*", (req, res) => {
     res.render("errors/404");
