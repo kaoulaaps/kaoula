@@ -227,6 +227,21 @@
                                                                 <%= work.subject
                                                                 %>
                                                             </span>
+
+                                                            <% if (user.id ===
+                                                            work.teacher) { %>
+                                                            <span
+                                                                onclick="window.location.href = '/homework/<%= work._id %>/edit?psg=notSet'"
+                                                                class="badge bg-dark"
+                                                                style="
+                                                                    cursor: pointer;
+                                                                "
+                                                            >
+                                                                <i
+                                                                    class="fa-solid fa-pen-to-square"
+                                                                ></i>
+                                                            </span>
+                                                            <% } %>
                                                         </h4>
                                                     </div>
                                                     <div
