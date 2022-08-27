@@ -125,6 +125,12 @@
                         <i class="fa-solid fa-plus"></i>
                     </button>
 
+                    <% if(user.role == 5) { %>
+                    <a href="/classes/new" class="btn btn-mid mb-2">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </a>
+                    <% } %>
+
                     <div
                         class="modal fade"
                         id="join"
