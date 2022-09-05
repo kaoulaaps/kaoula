@@ -241,6 +241,22 @@
                                                                     class="fa-solid fa-pen-to-square"
                                                                 ></i>
                                                             </span>
+                                                            <form
+                                                                action="/homework/<%= work._id %>/delete"
+                                                                method="POST"
+                                                                class="badge bg-danger deleteclass"
+                                                                style="
+                                                                    cursor: pointer;
+                                                                "
+                                                            >
+                                                                <button
+                                                                    type="submit"
+                                                                >
+                                                                    <i
+                                                                        class="fa-solid fa-trash"
+                                                                    ></i>
+                                                                </button>
+                                                            </form>
                                                             <% } %>
                                                         </h4>
                                                     </div>

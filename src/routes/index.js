@@ -96,6 +96,24 @@ router.get(
     }
 );
 
+// Delete a homework
+router.post("/homework/:id/delete", ensureAuth, async (req, res) => {
+    const { id } = req.params;
+
+    const find = await Homework.findById(id);
+
+    if (find === null || !find) {
+        res.redirect("/classes?error=Homework not found");
+    } else if (find.teacher !== req.user.id) {
+        res.redirect(
+            "/classes?error=Your Dont Have Permisions to delete this homework"
+        );
+    } else {
+        await Homework.findByIdAndDelete(find.id);
+        res.redirect("/classes?msg=Homework deleted");
+    }
+});
+
 // Render settings page
 router.get(
     "/classes/:id/settings",
