@@ -5,5 +5,7 @@
 -   [] Ban Users From Classes
 -   [] Invite links
 -   [] Turn on and off private class
--   [x] Add teacher when create an class (in process)
+-   [] Create calender page
+-.  [] Comments on posts in class overview (likes also)
+-   [x] Add teacher when create an class
 -   [x] (MBY) remove the select users when create an class
