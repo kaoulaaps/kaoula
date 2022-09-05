@@ -229,7 +229,7 @@ router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
         description,
         image,
         teacher: req.user._id,
-        students: students,
+        students: [req.user._id],
         private,
         maxStudents,
     });

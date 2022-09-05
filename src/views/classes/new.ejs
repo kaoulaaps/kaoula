@@ -143,24 +143,6 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="students">Vælg elever</label>
-                            <select
-                                class="form-control"
-                                id="students"
-                                name="students[]"
-                                multiple
-                                required
-                            >
-                                <% for (let student of users) { %>
-                                <img src="<%= student.avatar %> " />
-                                <option value="<%= student.id %>">
-                                    <%= student.name %>
-                                </option>
-                                <% } %>
-                            </select>
-                        </div>
-
-                        <div class="form-group mb-2">
                             <label for="maxStudents">Maks antal elever</label>
                             <input
                                 type="number"
@@ -168,7 +150,6 @@
                                 id="maxStudents"
                                 name="maxStudents"
                                 placeholder="Maks antal elever"
-                                required
                             />
                         </div>
 
