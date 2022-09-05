@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Kaoula - <%= work.title %></title>
+
+        <!-- Bootstrap -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        />
+        <!-- Fontawesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+            integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <!-- Custom -->
+        <link rel="stylesheet" href="../../style.css" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img
+                        src="../../kaoula.png"
+                        alt="Kaoula Logo"
+                        class="rounded-circle"
+                        width="45"
+                        height="45"
+                    />
+                </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarSupportedContent"
+                >
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                    <div class="d-flex" role="login">
+                        <% if (user) { %>
+
+                        <div class="dropdown">
+                            <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                dropdown-toggle
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <img
+                                    src="<%= user.avatar %>"
+                                    alt="<%= user.name %>"
+                                    class="rounded-circle"
+                                    width="25"
+                                    height="25"
+                                />
+
+                                <%= user.username %>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a
+                                    class="dropdown-item"
+                                    href="/profile/<%= user.uid %> "
+                                >
+                                    <i class="fa-solid fa-user-circle"></i>
+                                    Mine oplysninger
+                                </a>
+                                <a class="dropdown-item" href="/classes">
+                                    <i class="fa-solid fa-chalkboard-user"></i>
+                                    Mine klasser
+                                </a>
+
+                                <% if (user.role == 5) { %>
+                                <a class="dropdown-item" href="/classes/new">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    Lav en ny klasse
+                                </a>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <a
+                            class="btn btn-danger my-2 my-sm-0"
+                            style="margin-left: 5px"
+                            href="/auth/logout"
+                        >
+                            <i class="fa-solid fa-lock-open"></i> Log af
+                        </a>
+
+                        <% } else { %>
+                        <a
+                            class="btn btn-brand my-2 my-sm-0"
+                            href="/auth/github"
+                        >
+                            <i class="fa-solid fa-lock"></i> Log på
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div
+            class="container mt-5 p-4"
+            style="background: var(--mid-color) !important; border-radius: 10px"
+        >
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Rediger lektien "<%= work.title %>"</h1>
+                    <form action="/profile/<%= work.id %>/update" method="POST">
+                        <div class="form-group mb-3">
+                            <label for="name">Title</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="name"
+                                value="<%= work.title %>"
+                            />
+                        </div>
+
+                        <button type="submit" class="btn btn-brand">
+                            Opdater
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            const tooltipTriggerList = document.querySelectorAll(
+                '[data-bs-toggle="tooltip"]'
+            );
+            const tooltipList = [...tooltipTriggerList].map(
+                (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+            );
+        </script>
+    </body>
+</html>

@@ -97,20 +97,41 @@ router.get(
 );
 
 // Delete a homework
-router.post("/homework/:id/delete", ensureAuth, async (req, res) => {
-    const { id } = req.params;
+router.post(
+    "/homework/:id/delete",
+    ensureAuth,
+    ensureTeacher,
+    async (req, res) => {
+        const { id } = req.params;
 
-    const find = await Homework.findById(id);
+        const find = await Homework.findById(id);
 
-    if (find === null || !find) {
-        res.redirect("/classes?error=Homework not found");
-    } else if (find.teacher !== req.user.id) {
-        res.redirect(
-            "/classes?error=Your Dont Have Permisions to delete this homework"
-        );
+        if (find === null || !find) {
+            res.redirect("/classes?error=Homework not found");
+        } else if (find.teacher !== req.user.id) {
+            res.redirect(
+                "/classes?error=Your Dont Have Permisions to delete this homework"
+            );
+        } else {
+            await Homework.findByIdAndDelete(find.id);
+            res.redirect("/classes?msg=Homework deleted");
+        }
+    }
+);
+// Edit
+router.get("/homework/:id/edit", ensureAuth, async (req, res) => {
+    const Work = await Homework.findById({ _id: req.params.id });
+
+    if (req.user.id !== Work.teacher) {
+        res.redirect("/");
+    } else if (!Work) {
+        res.redirect("/");
     } else {
-        await Homework.findByIdAndDelete(find.id);
-        res.redirect("/classes?msg=Homework deleted");
+        res.render("classes/editHomework", {
+            isLoggedIn: req.isAuthenticated(),
+            user: req.user,
+            work: Work,
+        });
     }
 });
 
