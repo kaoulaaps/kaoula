@@ -179,7 +179,7 @@
                                     </a>
                                 </li>
 
-                                <% if (user.role == 5) { %>
+                                <% if (user._id === classData.teacher) { %>
                                 <li class="nav-item mb-2">
                                     <a
                                         href="/classes/<%= classData.id %>/settings"
