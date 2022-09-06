@@ -45,6 +45,7 @@ router.get(
     async (req, res) => {
         Class.findById({ _id: req.params.id }, async (err, classData) => {
             if (classData === null || !classData) {
+                req.flash("error", "Klassen blev ikke fundet.");
                 res.redirect(
                     "/classes?error=true&error_id=1&error_message=Class not found!"
                 );
@@ -385,6 +386,7 @@ router.post(
                 { new: true },
                 (err, classData) => {
                     if (err) {
+                        req.flash("error", "Fejl ved at inviter eleven");
                         res.redirect(
                             "/classes?error=true&error_id=3&error_message=Error inviting student&psg=" +
                                 err.message
@@ -406,6 +408,8 @@ router.get("/classes", ensureAuth, async (req, res) => {
     res.render("classes/index", {
         isLoggedIn: req.isAuthenticated(),
         user: req.user,
+        success: req.flash("success"),
+        error: req.flash("error"),
         teacherClasses: await Class.find({ teacher: req.user._id }),
         studentClasses: await Class.find({ students: req.user.id }),
     });

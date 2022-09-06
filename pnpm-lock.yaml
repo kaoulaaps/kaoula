@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   body-parser: ^1.19.1
   chalk: ^3.0.0
+  connect-flash: 0.1.1
   connect-mongo: ^3.2.0
   cors: ^2.8.5
   dotenv: ^14.3.2
@@ -33,7 +34,8 @@ specifiers:
 dependencies:
   body-parser: 1.20.0
   chalk: 3.0.0
-  connect-mongo: 3.2.0
+  connect-flash: 0.1.1
+  connect-mongo: 3.2.0_express-session@1.17.3
   cors: 2.8.5
   dotenv: 14.3.2
   ejs: 3.1.8
@@ -515,9 +517,17 @@ packages:
       typedarray: 0.0.6
     dev: false
 
-  /connect-mongo/3.2.0:
+  /connect-flash/0.1.1:
+    resolution: {integrity: sha512-2rcfELQt/ZMP+SM/pG8PyhJRaLKp+6Hk2IUBNkEit09X+vwn3QsAL3ZbYtxUn7NVPzbMTSLRDhqe0B/eh30RYA==}
+    engines: {node: '>= 0.4.0'}
+    dev: false
+
+  /connect-mongo/3.2.0_express-session@1.17.3:
     resolution: {integrity: sha512-0Mx88079Z20CG909wCFlR3UxhMYGg6Ibn1hkIje1hwsqOLWtL9HJV+XD0DAjUvQScK6WqY/FA8tSVQM9rR64Rw==}
+    peerDependencies:
+      express-session: ^1.17.1
     dependencies:
+      express-session: 1.17.3
       mongodb: 3.7.3
     transitivePeerDependencies:
       - aws4

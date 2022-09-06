@@ -115,6 +115,12 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12">
+                    <% if (success.length > 0) { %>
+                    <div class="alert alert-success"><%= success %></div>
+                    <% } %> <% if (error.length > 0) { %>
+                    <div class="alert alert-danger"><%= error %></div>
+                    <% } %>
+
                     <h1>Dine klasser:</h1>
 
                     <button
