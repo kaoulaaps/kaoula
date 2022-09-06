@@ -14,6 +14,7 @@ passport.use(
 
         async function (accessToken, refreshToken, profile, done) {
             const newUser = {
+                authId: profile.id,
                 uid: generate({
                     length: 11,
                     keyspace:
@@ -34,7 +35,7 @@ passport.use(
             };
 
             try {
-                let user = await User.findOne({ uid: profile.id });
+                let user = await User.findOne({ authId: profile.id });
                 if (user) {
                     done(null, user);
                 } else {
