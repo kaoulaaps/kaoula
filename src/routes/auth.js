@@ -6,14 +6,17 @@ router.get("/", (req, res) => {
     res.send(200);
 });
 
-// Github Auth
+// Google Auth
 
-router.get("/github", passport.authenticate("github"));
+router.get("/google", passport.authenticate("google"));
+router.get("/github", (req, res) => {
+    res.redirect("/auth/google");
+});
 
 router.get(
-    "/github/callback",
+    "/google/callback",
     passport.authenticate(
-        "github",
+        "google",
 
         {
             failureRedirect:
