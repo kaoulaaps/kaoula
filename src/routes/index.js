@@ -324,7 +324,7 @@ router.post(
     ensureTeacher,
     ensureAuth,
     async (req, res, next) => {
-        const { name, description, maxStudents } = req.body;
+        const { name, description, maxStudents, private } = req.body;
 
         if (maxStudents == undefined) {
             maxStudents = "30";
@@ -341,6 +341,7 @@ router.post(
                     name,
                     description,
                     maxStudents,
+                    private,
                 },
                 { new: true },
                 (err, classData) => {

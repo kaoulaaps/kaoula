@@ -245,6 +245,36 @@
                                                     />
                                                 </div>
 
+                                                <div class="form-group mb-3">
+                                                    <label
+                                                        for="private"
+                                                        class="text-dark"
+                                                        >Privat klasse?
+                                                        <span class="text-muted"
+                                                            >(Ingen kan joine
+                                                            via klasse ID)</span
+                                                        ></label
+                                                    >
+
+                                                    <% if (classData.private ===
+                                                    "on") { %>
+
+                                                    <input
+                                                        type="checkbox"
+                                                        name="private"
+                                                        id="private"
+                                                        checked
+                                                    />
+
+                                                    <% } else { %>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="private"
+                                                        id="private"
+                                                    />
+                                                    <% } %>
+                                                </div>
+
                                                 <button
                                                     type="submit"
                                                     class="btn btn-mid"
