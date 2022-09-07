@@ -324,7 +324,11 @@ router.post(
     ensureTeacher,
     ensureAuth,
     async (req, res, next) => {
-        const { name, description, maxStudents, private } = req.body;
+        let { name, description, maxStudents, private } = req.body;
+
+        if (private == undefined) {
+            private = "off";
+        }
 
         if (maxStudents == undefined) {
             maxStudents = "30";
@@ -343,6 +347,7 @@ router.post(
                     maxStudents,
                     private,
                 },
+
                 { new: true },
                 (err, classData) => {
                     if (err) {
@@ -358,6 +363,8 @@ router.post(
                     }
                 }
             );
+
+            console.log(req.body.private);
         } catch (error) {
             res.send({
                 error: true,
