@@ -7,7 +7,7 @@
 <h3 align="center">Kaoula</h3>
 
 <p align="center">
-  Next Generation School Program 🚀
+  Next Generation School Portal🚀
 <br>
 
 <div align="center">
