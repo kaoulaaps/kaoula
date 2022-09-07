@@ -13,7 +13,7 @@
 -   [x] Change login method from github to google
 -   [] Create API endpoints done.
 -   [] Delete homeworks after the day it set to.
--   [] Dropdown for fag when creating a new homework.
--   [x] Cath errors on routes (important)
+-   [x] Dropdown for fag when creating a new homework.
+-   [] Cath errors on routes (important)
 -   [x] Add teacher when create an class
 -   [x] (MBY) remove the select users when create an class
