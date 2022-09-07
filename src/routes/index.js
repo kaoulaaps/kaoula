@@ -5,6 +5,7 @@ const Post = require("../database/models/Post");
 const Thread = require("../database/models/Thread");
 const Message = require("../database/models/Message");
 const Homework = require("../database/models/Homework");
+const { fag } = require("../../data.json");
 const { generate } = require("yourid");
 const Moment = require("moment");
 
@@ -156,6 +157,7 @@ router.get(
                         _id: { $in: classData.students },
                     }),
                     users: await User.find({}),
+                    fag: fag,
                     classData: classData,
                     actions: {
                         edit: req.query.action === "EDIT",

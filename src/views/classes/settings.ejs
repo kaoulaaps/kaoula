@@ -615,14 +615,24 @@
                                                         >Fag:
                                                     </label>
 
-                                                    <input
-                                                        type="text"
-                                                        name="subject"
+                                                    <select
                                                         class="form-control"
-                                                        placeholder="Hvad fag? Fx Matematik eller dansk."
+                                                        name="tags"
                                                         required
-                                                        oninvalid="this.setCustomValidity('Du skal skrive et fag lektien handler om.')"
-                                                    />
+                                                    >
+                                                        <option value="">
+                                                            Vælg et fag
+                                                        </option>
+                                                        <% fag.forEach(fag => {
+                                                        %>
+                                                        <option
+                                                            name="subject"
+                                                            value="<%- fag %>"
+                                                        >
+                                                            <%- fag %>
+                                                        </option>
+                                                        <% }) %>
+                                                    </select>
                                                 </div>
 
                                                 <div class="form-group mb-3">
