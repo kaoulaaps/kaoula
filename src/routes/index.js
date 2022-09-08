@@ -174,6 +174,19 @@ router.get(
     }
 );
 
+// Invite Join
+router.get("/invite/:id", ensureAuth, async (req, res) => {
+    const { id } = req.params;
+
+    const invite = await Class.findOne({ invite: id });
+
+    if (!invite || invite == null) {
+        res.redirect("/?error=Invite is invalid");
+    } else {
+        res.redirect(`/classes/${invite._id}/join`);
+    }
+});
+
 // Delete class
 router.post(
     "/classes/:id/delete",
