@@ -3,12 +3,11 @@ const { generate } = require("yourid");
 
 const ClassSchema = new mongoose.Schema(
     {
-        classId: {
+        invite: {
             type: String,
             required: true,
             default: generate({
                 length: 10,
-                keyspace: "0123456789012345678901234567890123456789",
             }),
         },
 

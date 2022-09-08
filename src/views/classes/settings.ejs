@@ -457,7 +457,7 @@
                                         </div>
                                     </div>
                                     <% } %> <% if (actions.new_student) { %>
-                                    <div class="card">
+                                    <div class="card mb-3">
                                         <div class="card-body">
                                             <form
                                                 action="/classes/new/update/invite"
@@ -497,6 +497,47 @@
                                             </form>
                                         </div>
                                     </div>
+
+                                    <hr class="text-muted" />
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div>
+                                                <input
+                                                    type="hidden"
+                                                    name="class_id"
+                                                    value="<%= classData.id %>"
+                                                />
+
+                                                <h2 class="fs-5 text-dark">
+                                                    Invitation's link
+                                                </h2>
+
+                                                <div class="form-group mb-3">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        value="<%= host
+                                                    %>/invite/<%=
+                                                    classData.invite %>"
+                                                        disabled
+                                                        id="invite-value"
+                                                    />
+                                                </div>
+
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-brand"
+                                                    id="invite-btn"
+                                                >
+                                                    <i
+                                                        class="fa-solid fa-copy"
+                                                    ></i>
+                                                    Kopier link
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <% } %> <% if (actions.delete_class) { %>
                                     <div class="card">
                                         <div class="card-body">
@@ -504,13 +545,20 @@
                                                 action="/classes/<%= classData.id %>/delete"
                                                 method="POST"
                                             >
-                                                <div class="form-group mb-3">
+                                                <div class="form-group">
                                                     <label
                                                         for="students"
                                                         class="text-dark"
                                                         >Bekræft sletning af
                                                         klasse</label
                                                     >
+
+                                                    <p class="text-muted mb-2">
+                                                        Skriv "<%=
+                                                        classData.name %>" i
+                                                        feltet nedenunder
+                                                    </p>
+
                                                     <input
                                                         type="text"
                                                         id="delete-class-confirm"
@@ -680,5 +728,6 @@
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"
         ></script>
+        <script src="../../script.js"></script>
     </body>
 </html>

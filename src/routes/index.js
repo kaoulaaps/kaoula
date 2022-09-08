@@ -159,6 +159,7 @@ router.get(
                     users: await User.find({}),
                     fag: fag,
                     classData: classData,
+                    host: process.env.HOST,
                     actions: {
                         edit: req.query.action === "EDIT",
                         manage_students: req.query.action === "MANAGE_STUDENTS",
