@@ -4,6 +4,7 @@
 -   [x] Alerts / Flash Messages
 -   [] Ban Users From Classes
 -   [] Invite links
+-   [] Edit twitter link on the footer. (HR line could be better)
 -   [x] Turn on and off private class in settings
 -   [] Create calender page
 -   [] Comments on posts in class overview (likes also)
