@@ -4,8 +4,8 @@
 -   [x] Alerts / Flash Messages
 -   [] Ban Users From Classes
 -   [] Invite links
-       - [] Invite page under the class settings, fx: "Dette er dit invite" etc.
--   [] Edit twitter link on the footer. (HR line could be better)
+    -   [x] Invite page under the class settings, fx: "Dette er dit invite" etc.
+-   [x] Edit twitter link on the footer. (HR line could be better)
 -   [x] Turn on and off private class in settings
 -   [] Create calender page
 -   [] Comments on posts in class overview (likes also)
