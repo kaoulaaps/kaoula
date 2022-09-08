@@ -160,15 +160,12 @@
                                 <div class="modal-body">
                                     <form id="form">
                                         <div class="form-group">
-                                            <label for="classId"
-                                                >Klasse ID</label
-                                            >
                                             <input
                                                 type="text"
                                                 class="form-control"
                                                 id="classId"
                                                 name="classId"
-                                                placeholder="Klasse ID"
+                                                placeholder="Skriv en gyldig Invitation's kode"
                                                 required
                                             />
                                         </div>
@@ -183,11 +180,12 @@
                                         <button
                                             class="btn btn-success"
                                             type="submit"
+                                            disabled
                                         >
                                             <i
                                                 class="fa-solid fa-hand-point-right"
                                             ></i>
-                                            Join
+                                            Tilmeld
                                         </button>
                                     </form>
                                 </div>
@@ -214,7 +212,8 @@
                     </div>
                     <% } %> <% if (studentClasses.length == 0) { %>
                     <div class="alert alert-info" role="alert">
-                        Du har ikke tilmeldt nogen klasser.
+                        Du er ikke tilmeldt nogen klasser. Bed din lærer om en
+                        invitation.
                     </div>
 
                     <% } %>

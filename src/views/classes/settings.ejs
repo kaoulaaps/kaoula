@@ -502,6 +502,8 @@
 
                                     <div class="card">
                                         <div class="card-body">
+                                            <% if (classData.private === "off")
+                                            { %>
                                             <div>
                                                 <input
                                                     type="hidden"
@@ -536,6 +538,17 @@
                                                     Kopier link
                                                 </button>
                                             </div>
+                                            <% } else { %>
+                                            <p class="text-muted text-left">
+                                                <i
+                                                    class="fa-solid fa-triangle-exclamation"
+                                                ></i>
+
+                                                Det ser ud til din klasse er
+                                                privat. Gør den offenlig, så kan
+                                                du brige invitation linket.
+                                            </p>
+                                            <% } %>
                                         </div>
                                     </div>
                                     <% } %> <% if (actions.delete_class) { %>
