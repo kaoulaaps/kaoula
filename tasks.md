@@ -2,6 +2,7 @@
 
 -   [] Edit/Delete homework
 -   [] Site admin, can set users to be an teacher
+    -   Create page for adminds
 -   [x] Alerts / Flash Messages
 -   [] Ban Users From Classes
 -   [x] Invite links
@@ -17,7 +18,7 @@
 -   [] Create API endpoints done.
 -   [] Delete homeworks after the day it set to.
 -   [x] Dropdown for fag when creating a new homework.
--   [] Create a config file `kaoula.config.js` to customize the site, like site name and fronttext etc. (Links also like github and so on)
+-   [x] Create a config file `kaoula.config.js` to customize the site, like site name and fronttext etc. (Links also like github and so on)
 -   [] Cath errors on routes (important)
 -   [x] Add teacher when create an class
 -   [x] (MBY) remove the select users when create an class

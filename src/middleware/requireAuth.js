@@ -87,6 +87,14 @@ module.exports = {
         });
     },
 
+    ensureAdmin: function async(req, res, next) {
+        if (req.user.site_admin == true) {
+            return next();
+        } else {
+            res.redirect("/classes");
+        }
+    },
+
     ensureGuest: function (req, res, next) {
         if (!req.isAuthenticated()) {
             return next();

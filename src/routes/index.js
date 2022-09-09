@@ -16,6 +16,7 @@ const {
     ensureTeacher,
     ensureAccessToClass,
     ensurePriaveClass,
+    ensureAdmin,
 } = require("../middleware/requireAuth");
 
 router.get("/", ensureGuest, (req, res) => {
@@ -640,6 +641,14 @@ router.post("/messages/delete", ensureAuth, async (req, res) => {
             `/messages/t/${msg.tid}?success=true&success_message=Message deleted`
         );
     }
+});
+
+// Admin page
+router.get("/admin", ensureAuth, ensureAdmin, async (req, res) => {
+    res.render("admin/index", {
+        isLoggedIn: req.isAuthenticated(),
+        user: req.user,
+    });
 });
 
 // Errors

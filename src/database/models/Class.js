@@ -16,6 +16,11 @@ const ClassSchema = new mongoose.Schema(
             required: true,
         },
 
+        site_admin: {
+            type: Boolean,
+            default: false,
+        },
+
         description: {
             type: String,
         },
