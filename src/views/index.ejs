@@ -116,7 +116,7 @@
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
                 <div class="col-10 col-sm-8 col-lg-6">
                     <img
-                        src="kaoula.png"
+                        src="<%- config.home.site_logo  %>"
                         class="d-block mx-lg-auto img-fluid rounded-circle"
                         alt="Kaoula Logo"
                         width="700"
@@ -126,16 +126,11 @@
                 </div>
                 <div class="col-lg-6">
                     <h1 class="display-5 fw-bold lh-1 mb-3">
-                        <span class="text-brand">Kaoula</span>
+                        <span class="text-brand"
+                            ><%- config.home.site_name %></span
+                        >
                     </h1>
-                    <p class="lead">
-                        Dette er en skole platform der gør det nemt at oprette
-                        klasser og oprette og administrere klasser. Du kan give
-                        dine elever lektier for, samt oprette opgaver til dem.
-                        Der er også muglighed for at skrive med dine elever i
-                        grupper hvor det er dig der bestemmer hvem der kan
-                        skrive/se.
-                    </p>
+                    <p class="lead"><%- config.home.site_description %></p>
                     <div
                         class="d-grid gap-2 d-md-flex justify-content-md-start"
                     >

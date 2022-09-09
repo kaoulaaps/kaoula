@@ -7,6 +7,7 @@ const Message = require("../database/models/Message");
 const Homework = require("../database/models/Homework");
 const { fag } = require("../../data.json");
 const { generate } = require("yourid");
+const siteConfig = require("../../kaoula.config");
 const Moment = require("moment");
 
 const {
@@ -21,6 +22,7 @@ router.get("/", ensureGuest, (req, res) => {
     res.render("index", {
         isLoggedIn: req.isAuthenticated(),
         user: req.user,
+        config: siteConfig,
     });
 });
 

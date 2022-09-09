@@ -11,17 +11,17 @@
                     class="bi rounded-circle"
                     width="30"
                     height="30"
-                    src="./kaoula.png"
+                    src="<%- config.footer.default.logo %>"
                 />
             </a>
-            <span class="text-muted">&copy; 2022 Kaoula Aps</span>
+            <span class="text-muted"><%- config.footer.default.text %></span>
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li class="ms-3">
                 <a
                     class="text-muted"
-                    href="https://github.com/kaoulaaps"
+                    href="<%- config.footer.links.github %>"
                     target="_blank"
                 >
                     <i class="fa-brands fa-github"></i>
@@ -30,7 +30,7 @@
             <li class="ms-3">
                 <a
                     class="text-muted"
-                    href="https://twitter.com/kaoulaaps"
+                    href="<%- config.footer.links.twitter %>"
                     target="_blank"
                 >
                     <i class="fa-brands fa-twitter"></i>
