@@ -1,6 +1,7 @@
 # Tasks
 
 -   [] Edit/Delete homework
+-   [] Site admin, can set users to be an teacher
 -   [x] Alerts / Flash Messages
 -   [] Ban Users From Classes
 -   [x] Invite links
