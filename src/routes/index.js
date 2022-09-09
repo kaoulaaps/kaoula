@@ -647,6 +647,9 @@ router.post("/messages/delete", ensureAuth, async (req, res) => {
 router.get("/classData", (req, res) => {
     res.redirect("/classes");
 });
+router.get("/classData/new", (req, res) => {
+    res.redirect("/classes");
+});
 // 404
 router.get("*", (req, res) => {
     res.render("errors/404");
