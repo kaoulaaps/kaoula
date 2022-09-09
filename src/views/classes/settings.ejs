@@ -492,7 +492,7 @@
                                                     <i
                                                         class="fa-solid fa-user-plus"
                                                     ></i>
-                                                    Tilføj studerende
+                                                    Tilføj elev
                                                 </button>
                                             </form>
                                         </div>
@@ -527,18 +527,43 @@
                                                     />
                                                 </div>
 
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-brand"
-                                                    id="invite-btn"
+                                                <form
+                                                    action="/classes/new/update/invite/new"
+                                                    method="post"
                                                 >
-                                                    <i
-                                                        class="fa-solid fa-copy"
-                                                    ></i>
-                                                    Kopier link
-                                                </button>
+                                                    <input
+                                                        type="hidden"
+                                                        name="classId"
+                                                        value="<%= classData.id %>"
+                                                        required
+                                                    />
+
+                                                    <button
+                                                        type="reset"
+                                                        class="btn btn-brand"
+                                                        id="invite-btn"
+                                                    >
+                                                        <i
+                                                            class="fa-solid fa-copy"
+                                                        ></i>
+                                                        Kopier link
+                                                    </button>
+                                                    <button
+                                                        class="btn btn-mid"
+                                                        id="invite-btn-new"
+                                                        type="submit"
+                                                    >
+                                                        <i
+                                                            class="fa-solid fa-arrow-rotate-right"
+                                                        ></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                             <% } else { %>
+                                            <h2 class="fs-5 text-dark">
+                                                Invitation's link
+                                            </h2>
+
                                             <p class="text-muted text-left">
                                                 <i
                                                     class="fa-solid fa-triangle-exclamation"

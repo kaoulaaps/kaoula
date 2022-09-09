@@ -430,6 +430,70 @@ router.post(
     }
 );
 
+// Update classes students
+router.post(
+    "/classes/new/update/invite",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res) => {
+        let { uid } = req.body;
+
+        let userId = await User.findOne({ uid: uid });
+
+        if (userId) {
+            Class.findByIdAndUpdate(
+                { _id: req.body.class_id },
+                { $push: { students: userId._id } },
+                { new: true },
+                (err, classData) => {
+                    if (err) {
+                        req.flash("error", "Fejl ved at inviter eleven");
+                        res.redirect(
+                            "/classes?error=true&error_id=3&error_message=Error inviting student&psg=" +
+                                err.message
+                        );
+                    } else {
+                        res.redirect(
+                            "/classes/" +
+                                classData._id +
+                                "?success=true&success_message=Student invited successfully"
+                        );
+                    }
+                }
+            );
+        }
+    }
+);
+
+// Regenarate an invite
+router.post(
+    "/classes/new/update/invite/new",
+    ensureTeacher,
+    ensureAuth,
+    async (req, res, next) => {
+        const { classId } = req.body;
+
+        const classData = await Class.findById(classId);
+
+        try {
+            if (!classData || classData === null || classData === undefined) {
+                res.redirect("/classes?error=class was not found");
+            } else {
+                classData.invite = generate({
+                    length: 10,
+                });
+
+                classData.save();
+                res.redirect(
+                    `/classes/${classData._id}/settings?action=NEW_STUDENT&message=an new invite was created`
+                );
+            }
+        } catch (error) {
+            return next();
+        }
+    }
+);
+
 router.get("/classes", ensureAuth, async (req, res) => {
     res.render("classes/index", {
         isLoggedIn: req.isAuthenticated(),
