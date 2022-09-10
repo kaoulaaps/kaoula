@@ -648,8 +648,32 @@ router.get("/admin", ensureAuth, ensureAdmin, async (req, res) => {
     res.render("admin/index", {
         isLoggedIn: req.isAuthenticated(),
         user: req.user,
+        users: await User.find({}),
     });
 });
+
+// Delete a user
+router.post(
+    "/admin/user/:id/delete",
+    ensureAuth,
+    ensureAdmin,
+    async (req, res) => {
+        const { id } = req.params;
+
+        const find = await User.findById(id);
+
+        if (find === null || !find) {
+            res.redirect("/classes?error=User was not found");
+        } else if (!req.user.site_admin === true) {
+            res.redirect(
+                "/classes?error=Your Dont Have Permisions to delete this user"
+            );
+        } else {
+            await User.findByIdAndDelete(find.id);
+            res.redirect("/admin?msg=User was deleted");
+        }
+    }
+);
 
 // Errors
 // The /classData error
