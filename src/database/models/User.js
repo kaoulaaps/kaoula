@@ -16,6 +16,11 @@ const UserSchema = new mongoose.Schema(
             type: String,
         },
 
+        site_admin: {
+            type: Boolean,
+            default: false,
+        },
+
         username: {
             type: String,
             required: true,
