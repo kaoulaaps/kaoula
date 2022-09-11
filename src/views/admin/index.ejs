@@ -135,12 +135,15 @@
                                 <th>Email</th>
                                 <th>Id</th>
                                 <th>Delete</th>
+                                <th>Teacher</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% for (let auser of users) { %>
                             <tr account_id="<%= auser.uid %> ">
-                                <td class="text-muted"><%= auser.name %></td>
+                                <td class="text-muted">
+                                    <%= auser.username %>
+                                </td>
                                 <td class="text-muted"><%= auser.email %></td>
                                 <td class="text-muted"><%= auser.uid %></td>
                                 <td>
@@ -167,6 +170,33 @@
                                         </button>
                                         <% } %>
                                     </form>
+                                </td>
+                                <td>
+                                    <% if (auser.role === 5) { %>
+                                    <form
+                                        action="/admin/user/<%= auser._id %>/teacher/remove"
+                                        method="post"
+                                    >
+                                        <button
+                                            class="btn btn-danger btn-sm"
+                                            type="submit"
+                                        >
+                                            <i class="fa-solid fa-x"></i>
+                                        </button>
+                                    </form>
+                                    <% } else { %>
+                                    <form
+                                        action="/admin/user/<%= auser._id %>/teacher"
+                                        method="post"
+                                    >
+                                        <button
+                                            class="btn btn-success btn-sm"
+                                            type="submit"
+                                        >
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                    </form>
+                                    <% } %>
                                 </td>
                             </tr>
                             <% } %>

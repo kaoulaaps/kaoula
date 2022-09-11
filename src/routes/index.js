@@ -675,6 +675,56 @@ router.post(
     }
 );
 
+// Make User An Teacher
+router.post(
+    "/admin/user/:id/teacher",
+    ensureAuth,
+    ensureAdmin,
+    async (req, res) => {
+        const { id } = req.params;
+
+        const find = await User.findById(id);
+
+        if (find === null || !find) {
+            res.redirect("/classes?error=User was not found");
+        } else if (!req.user.site_admin === true) {
+            res.redirect(
+                "/classes?error=Your Dont Have Permisions to delete this user"
+            );
+        } else {
+            find.role = 5;
+            find.save();
+
+            res.redirect("/admin?msg=User is now a teacher");
+        }
+    }
+);
+
+// Remove user as a teacher
+router.post(
+    "/admin/user/:id/teacher/remove",
+    ensureAuth,
+    ensureAdmin,
+    async (req, res) => {
+        const { id } = req.params;
+
+        const find = await User.findById(id);
+
+        if (find === null || !find) {
+            res.redirect("/classes?error=User was not found");
+        } else if (!req.user.site_admin === true) {
+            res.redirect(
+                "/classes?error=Your Dont Have Permisions to delete this user"
+            );
+        } else {
+            find.role = 0;
+            find.save();
+
+            res.redirect("/admin?msg=User is now a student");
+        }
+    }
+);
+
 // Errors
 // The /classData error
 router.get("/classData", (req, res) => {
