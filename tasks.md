@@ -2,8 +2,8 @@
 
 -   [] Edit/Delete homework
 -   [] How be an teacher page to apply for it.
--   [] Site admin, can set users to be an teacher
-    -   Create page for adminds
+-   [x] Site admin, can set users to be an teacher
+    -   [x] Create page for adminds
 -   [x] Alerts / Flash Messages
 -   [] Ban Users From Classes
 -   [x] Invite links
