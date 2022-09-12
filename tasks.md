@@ -20,6 +20,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [] Comments on posts in class overview (likes also)
 -   [] Check for max members in classes
 -   [] (IDEA) Emails, fx user banned or joined a class
+-   [] Change the "/classes/:id" routes to classId and not the automatically generation mongoDB id
 -   [x] Fix teacher issues in classes, other teachers can edit and go to settings on classes there they are not teacher at
 -   [x] Change login method from github to google
 -   [] Create API endpoints done.
