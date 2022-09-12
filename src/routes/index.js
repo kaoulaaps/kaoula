@@ -147,10 +147,14 @@ router.get(
     ensureAuth,
     async (req, res) => {
         Class.findById({ _id: req.params.id }, async (err, classData) => {
+            const teacher = await User.findById({ _id: classData.teacher });
+
             if (classData === null || !classData) {
                 res.redirect(
                     "/classes?error=true&error_id=1&error_message=Class not found!"
                 );
+            } else if (req.user.id !== teacher.id) {
+                res.redirect(`/classes/${classData.id}`);
             } else {
                 res.render("classes/settings", {
                     isLoggedIn: req.isAuthenticated(),
@@ -736,7 +740,6 @@ router.get("/apply", async (req, res) => {
         formKey: process.env.FORMSPREE_API_KEY,
     });
 });
-
 // Errors
 // The /classData error
 router.get("/classData", (req, res) => {

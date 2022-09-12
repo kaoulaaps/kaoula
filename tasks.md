@@ -13,13 +13,14 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [] Ban Users From Classes
 -   [x] Invite links
     -   [x] Invite page under the class settings, fx: "Dette er dit invite" etc.
+    -   [] Make the invites to a schema where we use the ref "Class"
 -   [x] Edit twitter link on the footer. (HR line could be better)
 -   [x] Turn on and off private class in settings
 -   [] Create calender page
 -   [] Comments on posts in class overview (likes also)
 -   [] Check for max members in classes
 -   [] (IDEA) Emails, fx user banned or joined a class
--   [] Fix teacher issues in classes, other teachers can edit and go to settings on classes there they are not teacher at
+-   [x] Fix teacher issues in classes, other teachers can edit and go to settings on classes there they are not teacher at
 -   [x] Change login method from github to google
 -   [] Create API endpoints done.
 -   [] Delete homeworks after the day it set to.
