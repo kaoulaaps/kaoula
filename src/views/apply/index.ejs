@@ -21,7 +21,7 @@
             referrerpolicy="no-referrer"
         />
         <!-- Custom -->
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="../style.css" />
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-light">
@@ -111,61 +111,6 @@
                 </div>
             </div>
         </nav>
-
-        <div class="px-4 pt-5 my-5 text-center border-bottom">
-            <h1 class="display-4 fw-bold"><%- config.home.site_name %></h1>
-            <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4"><%- config.home.site_description %></p>
-                <div
-                    class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"
-                >
-                    <% if (user) { %>
-                    <a
-                        href="/classes"
-                        class="btn btn-brand btn-lg px-4 me-sm-3"
-                    >
-                        <i class="fa-solid fa-chalkboard-user"></i> Mine klasser
-                    </button>
-                    <% } else { %>
-                    <a href="/auth/google" class="btn btn-brand btn-lg px-4 me-sm-3">
-                        <i class="fa-brands fa-google"></i> Log på med google
-                    </a>
-                    <% } %>
-
-                    <a href="/about" class="btn btn-mid btn-lg px-4">
-                        <i class="fa-solid fa-magnifying-glass"></i> Lær mere
-                    </a>
-                </div>
-            </div>
-            <div class="overflow-hidden" style="max-height: 30vh">
-                <div class="container px-5">
-                    <img
-                        src="https://i.ibb.co/mc7zctM/kaula-example.png"
-                        class="img-fluid border rounded-3 shadow-lg mb-4"
-                        alt="Example image"
-                        width="700"
-                        height="500"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
-        </div>
-
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-              <div class="col-10 col-sm-8 col-lg-6">
-                <img src="https://i.ibb.co/DzBpZ1R/settings-kaula.png" class="d-block mx-lg-auto img-fluid" alt="Settings" width="700" height="500" loading="lazy" style="border-radius:4px">
-              </div>
-              <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Som lærer...</h1>
-                <p class="lead">Når du er lærer kan du lave klasser og inviter dine elever. Du kan bla. give dem lektier for eller opgaver. Er du en lærer? Så ansøg i dag for at komme igang!</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                  <button type="button" class="btn btn-brand btn-lg px-4 me-md-2"><i class="fa-solid fa-plus"></i> Ansøg</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <%- include("./footer.ejs") %>
 

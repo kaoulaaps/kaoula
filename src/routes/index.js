@@ -725,6 +725,14 @@ router.post(
     }
 );
 
+// Apply for Teacher page
+router.get("/apply", async (req, res) => {
+    res.render("apply/index", {
+        isLoggedIn: req.isAuthenticated(),
+        user: req.user,
+    });
+});
+
 // Errors
 // The /classData error
 router.get("/classData", (req, res) => {
