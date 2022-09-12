@@ -1,4 +1,5 @@
-# Tasks
+# 🗂 Tasks
+These are all tasks that will be worked on **Kaoula**. Create a pull request or a issue if you have an idea.
 
 -   [] Edit/Delete homework
 -   [] How be an teacher page to apply for it.
@@ -21,5 +22,7 @@
 -   [x] Dropdown for fag when creating a new homework.
 -   [x] Create a config file `kaoula.config.js` to customize the site, like site name and fronttext etc. (Links also like github and so on)
 -   [] Cath errors on routes (important)
+-   [] Make messages dashboard
+    - [] Create messages page much better with new features, fx: leave message thread, invite new memebers.
 -   [x] Add teacher when create an class
 -   [x] (MBY) remove the select users when create an class
