@@ -1,4 +1,5 @@
-# Tasks
+# 🗂 Tasks
+These are all tasks that will be worked on **Kaoula**. Create a pull request or a issue if you have an idea.
 
 -   [] Edit/Delete homework
 -   [] How be an teacher page to apply for it.
