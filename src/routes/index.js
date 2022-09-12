@@ -362,6 +362,9 @@ router.post(
                 { _id: req.body.classId },
                 {
                     name,
+                    invite: generate({
+                        length: 10,
+                    }),
                     description,
                     maxStudents,
                     private,
