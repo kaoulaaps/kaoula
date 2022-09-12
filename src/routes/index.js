@@ -733,6 +733,7 @@ router.get("/apply", async (req, res) => {
     res.render("apply/index", {
         isLoggedIn: req.isAuthenticated(),
         user: req.user,
+        formKey: process.env.FORMSPREE_API_KEY,
     });
 });
 

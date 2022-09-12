@@ -112,7 +112,113 @@
             </div>
         </nav>
 
-        <%- include("./footer.ejs") %>
+        <form
+            accept-charset="utf-8"
+            class="form"
+            action="https://formspree.io/f/<%= formKey  %>"
+            method="post"
+        >
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    id="full-name"
+                    placeholder="First and Last"
+                    required=""
+                />
+                <label for="email-address">Email Address</label>
+                <input
+                    type="email"
+                    name="_replyto"
+                    id="email-address"
+                    placeholder="email@domain.tld"
+                    required=""
+                />
+                <div class="form-group">
+                    <label for="timely"
+                        >1. The service provided was completed in a timely
+                        manner.</label
+                    >
+                    <select name="timely" id="timely" required="">
+                        <option value="" selected="" disabled="">Choose</option>
+                        <option value="1">Strongly Agree</option>
+                        <option value="3">Agree</option>
+                        <option value="5">Neutral</option>
+                        <option value="7">Disagree</option>
+                        <option value="9">Strongly Disagree</option>
+                    </select>
+                    <label for="timely"
+                        >2. The quality of work was high in quality.</label
+                    >
+                    <select name="quality" id="quality" required="">
+                        <option value="" selected="" disabled="">Choose</option>
+                        <option value="1">Strongly Agree</option>
+                        <option value="3">Agree</option>
+                        <option value="5">Neutral</option>
+                        <option value="7">Disagree</option>
+                        <option value="9">Strongly Disagree</option>
+                    </select>
+                </div>
+                <label for="message">Additional Comments</label>
+                <textarea
+                    rows="3"
+                    name="message"
+                    id="message"
+                    placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+                    required=""
+                ></textarea>
+                <input
+                    type="hidden"
+                    name="_subject"
+                    id="email-subject"
+                    value="Survey Responses"
+                />
+            </div>
+            <input type="submit" value="Send Responses" />
+        </form>
+
+        <form action="https://formspree.io/f/<%= formKey  %>" method="post">
+            <fieldset>
+                <legend>Disabled fieldset example</legend>
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label"
+                        >Disabled input</label
+                    >
+                    <input
+                        type="text"
+                        id="disabledTextInput"
+                        class="form-control"
+                        placeholder="Disabled input"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="disabledSelect" class="form-label"
+                        >Disabled select menu</label
+                    >
+                    <select id="disabledSelect" class="form-select">
+                        <option>Disabled select</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="disabledFieldsetCheck"
+                            disabled
+                        />
+                        <label
+                            class="form-check-label"
+                            for="disabledFieldsetCheck"
+                        >
+                            Can't check this
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
 
         <!-- Scripts -->
         <script

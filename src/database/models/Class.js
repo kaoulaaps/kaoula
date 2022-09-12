@@ -20,16 +20,17 @@ const ClassSchema = new mongoose.Schema(
             type: String,
         },
 
-        image: {
-            type: String,
-        },
-
         teacher: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
 
         students: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: "User",
+        },
+
+        banned: {
             type: [mongoose.Schema.Types.ObjectId],
             ref: "User",
         },

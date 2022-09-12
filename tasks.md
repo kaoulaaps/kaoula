@@ -4,7 +4,8 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 
 -   [] Edit/Delete homework
 -   [] How be an teacher page to apply for it.
--   [x] Reset invite when change the class visibility
+-   [] Create a loading spinner for pages.
+-   [x] Reset invite when change the class visibility.
 -   [x] Make the homepage better
 -   [x] Site admin, can set users to be an teacher
     -   [x] Create page for adminds
