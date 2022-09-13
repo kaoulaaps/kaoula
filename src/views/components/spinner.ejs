@@ -1,0 +1,31 @@
+<style type="text/css">
+    .center-to-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--dark-color);
+    }
+</style>
+
+<div class="center-to-screen loader">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        document.querySelector(".loader").remove();
+
+        document
+            .querySelector(".loader")
+            .addEventListener("transitionend", () => {
+                document.body.removeChild(document.querySelector(".loader"));
+            });
+    });
+</script>
