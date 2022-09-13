@@ -135,8 +135,31 @@ router.get("/homework/:id/edit", ensureAuth, async (req, res) => {
         res.render("classes/editHomework", {
             isLoggedIn: req.isAuthenticated(),
             user: req.user,
+            fag: fag,
             work: Work,
         });
+    }
+});
+
+// Update an homework
+router.post("/homework/edit", ensureAuth, ensureTeacher, async (req, res) => {
+    const { title, description, subject, dueDate, hid, classId } = req.body;
+
+    const homework = await Homework.findById(hid);
+    const teacher = await User.findById({ _id: homework.teacher });
+
+    if (!homework || homework == null) {
+        res.redirect("/classes");
+    } else if (req.user.id !== teacher.id) {
+        res.redirect("/classes");
+    } else {
+        homework.title = title;
+        homework.description = description;
+        homework.subject = subject;
+        homework.dueDate = dueDate;
+
+        homework.save();
+        res.redirect(`/classes/homework`);
     }
 });
 

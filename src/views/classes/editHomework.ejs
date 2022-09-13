@@ -124,17 +124,69 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>Rediger lektien "<%= work.title %>"</h1>
-                    <form action="/profile/<%= work.id %>/update" method="POST">
+                    <form action="/homework/edit" method="POST">
                         <div class="form-group mb-3">
-                            <label for="name">Title</label>
+                            <label for="title">Title</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                id="name"
-                                name="name"
+                                id="title"
+                                name="title"
                                 value="<%= work.title %>"
+                                required
                             />
                         </div>
+
+                        <div class="form-group mb-3">
+                            <label for="description">Lektien</label>
+
+                            <textarea
+                                class="form-control"
+                                id="description"
+                                name="description"
+                            >
+<%= work.description  %> </textarea
+                            >
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="subject">Fag: </label>
+
+                            <select
+                                class="form-control"
+                                name="subject"
+                                required
+                            >
+                                <option value="<%- work.subject  %>">
+                                    <%- work.subject %>
+                                </option>
+                                <% fag.forEach(fag => { %>
+                                <option value="<%- fag %>"><%- fag %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="dueDate"
+                                >Hvornår er lektien til for?
+                            </label>
+
+                            <input
+                                type="date"
+                                name="dueDate"
+                                class="form-control"
+                                id="homework"
+                                placeholder="Skriv din opgave"
+                                required
+                                value="<%- work.dueDate %>"
+                            />
+                        </div>
+
+                        <input
+                            type="hidden"
+                            name="hid"
+                            value="<%= work._id %>"
+                        />
 
                         <button type="submit" class="btn btn-brand">
                             Opdater
