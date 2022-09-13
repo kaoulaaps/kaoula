@@ -10,6 +10,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [x] Site admin, can set users to be an teacher
     -   [x] Create page for adminds
 -   [x] Alerts / Flash Messages
+    - [] Fix bug in the flash messages, in does not display when you use the `req.flash`
 -   [] Ban Users From Classes
 -   [x] Invite links
     -   [x] Invite page under the class settings, fx: "Dette er dit invite" etc.
