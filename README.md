@@ -50,7 +50,7 @@ Install dependencies
 pnpm (npm) install
 ```
 
-Config .env
+Config `.env` <br>
 Rename the `.env.example`to `.env` and fill out all the required fields. (MongoDB, PORT, HOST, API_TOKEN, NODE_ENV, GOOGLE...)
 
 Run the server
