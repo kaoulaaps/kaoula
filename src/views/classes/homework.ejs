@@ -352,9 +352,10 @@
                                                         class="fa-solid fa-info-circle"
                                                     ></i>
 
-                                                    <% if (user.role == 5) { %>
-                                                    Der er ingen lektier for
-                                                    dine elever,
+                                                    <% if (user.id ===
+                                                    teacher.id) { %> Der er
+                                                    ingen lektier for dine
+                                                    elever,
                                                     <a
                                                         style="color: #055160"
                                                         href="/classes/<%= classData.id %>/settings?action=HOMEWORK"
