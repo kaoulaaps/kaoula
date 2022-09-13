@@ -41,20 +41,23 @@ Kaoula is a next generation school program. There you can have classes with gruo
 Download the source code
 
 ```bash
-git clone https://github.com/lassv/kaoula.git
+git clone https://github.com/kaoulaaps/kaoula.git
 ```
 
 Install dependencies
 
 ```bash
-pnpm install
+pnpm (npm) install
 ```
+
+Config .env
+Rename the `.env.example`to `.env` and fill out all the required fields. (MongoDB, PORT, HOST, API_TOKEN, NODE_ENV, GOOGLE...)
 
 Run the server
 
 ```bash
 cd kaoula
-pnpm dev
+pnpm run dev
 ```
 
-Then go to <code>http://localhost:2000</code>.
+And then your server is ready at `http://localhost:{PORT}`
