@@ -9,6 +9,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [x] Create a loading spinner for pages.
 -   [x] Reset invite when change the class visibility.
 -   [x] Make the homepage better
+    -   [] Self host section on the home page
 -   [x] Site admin, can set users to be an teacher
     -   [x] Create page for adminds
 -   [x] Alerts / Flash Messages
