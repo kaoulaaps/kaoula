@@ -14,6 +14,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const flash = require("connect-flash");
+const Logger = require("./src/utils/Logger");
 
 //  Middlewares & Sessions
 // Settings & Middlewares
@@ -63,5 +64,5 @@ app.use("/", indexRouter);
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`💻 Server is running on port ${chalk.redBright(PORT)}`);
+    new Logger("INFO").log("Server started on port " + PORT);
 });
