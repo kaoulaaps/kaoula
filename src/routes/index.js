@@ -590,32 +590,24 @@ router.post("/profile/:id/update", ensureAuth, async (req, res) => {
     }
 }),
     // Messages
-    // Render new message form
-    router.get("/messages/new", ensureAuth, async (req, res) => {
-        res.render("messages/new", {
-            isLoggedIn: req.isAuthenticated(),
-            user: req.user,
-            users: await User.find({}),
+
+    // Create Message
+    router.post("/messages/new/thread", ensureAuth, async (req, res) => {
+        const { title, subject, users } = req.body;
+
+        const newThread = new Thread({
+            tid: generate({
+                length: 15,
+                keyspace: "012345678910012345678910012345678910",
+            }),
+            title,
+            subject,
+            users,
         });
-    });
 
-// Create Message
-router.post("/messages/new/thread", ensureAuth, async (req, res) => {
-    const { title, subject, users } = req.body;
-
-    const newThread = new Thread({
-        tid: generate({
-            length: 15,
-            keyspace: "012345678910012345678910012345678910",
-        }),
-        title,
-        subject,
-        users,
-    });
-
-    await newThread.save();
-    res.redirect(`/messages/t/${newThread._id}`);
-}),
+        await newThread.save();
+        res.redirect(`/messages/t/${newThread._id}`);
+    }),
     // Create new Message
     router.post("/messages/new", ensureAuth, async (req, res) => {
         let { content, tid } = req.body;
@@ -645,6 +637,9 @@ router.get("/messages/t/:id", ensureAuth, async (req, res) => {
                 _id: { $in: thread.users },
             }),
             messages: await Message.find({ tid: req.params.id }),
+            threads: await Thread.find({ users: req.user.id }).sort({
+                createdAt: -1,
+            }),
         });
     } else {
         res.redirect("/");
@@ -655,7 +650,10 @@ router.get("/messages/t/:id", ensureAuth, async (req, res) => {
         res.render("messages/list", {
             isLoggedIn: req.isAuthenticated(),
             user: req.user,
-            threads: await Thread.find({ users: req.user.id }),
+            users: await User.find({}),
+            threads: await Thread.find({ users: req.user.id }).sort({
+                createdAt: -1,
+            }),
         });
     });
 

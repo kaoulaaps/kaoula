@@ -35,9 +35,14 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [x] Dropdown for fag when creating a new homework.
 -   [x] Create a config file `kaoula.config.js` to customize the site, like site name and fronttext etc. (Links also like github and so on)
 -   [] Cath errors on routes (important)
--   [] Make messages dashboard
-    -   [] Create messages page much better with new features, fx: leave message thread, invite new memebers.
+-   [x] Make messages dashboard
+    -   [x] Create messages page much better with new features, fx: leave message thread, invite new memebers.
     -   [] Web Sockets Server for messages so its real time. (socket.io)
+    -   [] Invite new mebers to the thread
+    -   [] Leave a thread
+    -   [] Fix when a thread is not found
+    -   [] Emoji keyboard
+    -   [] File upload
 -   [x] Add teacher when create an class
 -   [x] (MBY) remove the select users when create an class
 -   [] (MBY) create an badge on the teachers classes on the route `/classes`, fx "Ejer"

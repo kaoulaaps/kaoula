@@ -78,13 +78,13 @@
                                     <i class="fa-solid fa-user-circle"></i>
                                     Mine oplysninger
                                 </a>
-                                <a class="dropdown-item" href="/classes">
+                                <a class="dropdown-item" href="/classData">
                                     <i class="fa-solid fa-chalkboard-user"></i>
                                     Min klasse
                                 </a>
 
                                 <% if (user.role == 5) { %>
-                                <a class="dropdown-item" href="/classes/new">
+                                <a class="dropdown-item" href="/classData/new">
                                     <i class="fa-solid fa-user-plus"></i>
                                     Lav en ny klasse
                                 </a>
@@ -113,39 +113,119 @@
             </div>
         </nav>
 
-        <div class="container mt-5">
+        <div class="container mt-3">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>Dine beskedtråde:</h1>
-
-                    <a href="/messages/new" class="btn btn-mid mb-2">
-                        <i class="fa-solid fa-plus"></i>
-                    </a>
-
-                    <% for (let thread of threads) { %>
-                    <div class="card mb-3">
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-dark">Dine Beskeder</h4>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title text-dark">
-                                <%= thread.title %>
-                            </h5>
-                            <p class="card-text text-muted">
-                                <%= thread.subject %>
-                            </p>
-
-                            <a
-                                href="/messages/t/<%= thread._id %>"
-                                class="btn btn-mid"
-                            >
-                                Gå til besked
-                            </a>
+                            <ul class="nav nav-pills flex-column">
+                                <% threads.map((t) => { %>
+                                <li class="nav-item mb-2">
+                                    <a
+                                        href="/messages/t/<%= t._id %>"
+                                        class="nav-link active"
+                                        style="
+                                            background-color: rgb(
+                                                223,
+                                                223,
+                                                223
+                                            );
+                                            color: rgb(134, 134, 134);
+                                            font-weight: bold;
+                                            cursor: pointer;
+                                        "
+                                        data-toggle="tab"
+                                        role="tab"
+                                    >
+                                        <%= t.title %>
+                                    </a>
+                                </li>
+                                <% }) %>
+                            </ul>
                         </div>
                     </div>
-                    <% } %> <% if (threads.length == 0) { %>
-                    <div class="alert alert-info" role="alert">
-                        Du har ikke oprettet nogen beskedtråde endnu.
-                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="text-muted">Vælg besked</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="container mt-3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="text-dark">
+                                            Opret ny beskedtråd
+                                        </h5>
+                                        <form
+                                            action="/messages/new/thread"
+                                            method="post"
+                                            class="text-muted"
+                                        >
+                                            <div class="form-group mb-3">
+                                                <label for="title"
+                                                    >Title*</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="title"
+                                                    name="title"
+                                                    placeholder="Title på beskedtråd"
+                                                    required
+                                                />
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="subject"
+                                                    >Emne*</label
+                                                >
 
-                    <% } %>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="subject"
+                                                    name="subject"
+                                                    placeholder="Emne"
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div class="form-group mb-2">
+                                                <label for="users">Til*</label>
+                                                <select
+                                                    class="form-control"
+                                                    id="users"
+                                                    name="users[]"
+                                                    multiple
+                                                    required
+                                                >
+                                                    <% for (let user of users) {
+                                                    %>
+
+                                                    <option
+                                                        value="<%= user.id %>"
+                                                    >
+                                                        <%= user.username %>
+                                                    </option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-mid"
+                                            >
+                                                Opret beskedtråd
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
