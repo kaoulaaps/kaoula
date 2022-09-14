@@ -37,6 +37,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [] Cath errors on routes (important)
 -   [x] Make messages dashboard
     -   [x] Create messages page much better with new features, fx: leave message thread, invite new memebers.
+    -   [] Display a "Beskeder" button
     -   [] Web Sockets Server for messages so its real time. (socket.io)
     -   [] Invite new mebers to the thread
     -   [] Leave a thread
