@@ -5,6 +5,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [x] Edit/Delete homework
 -   [] How be an teacher page to apply for it.
 -   [] Make the learn more page, with info about what **Kaoula** is.
+-   [] Make the footer better with links to different pages like messages or classes
 -   [] Create an guide to host your own kaoula for your school. (Mby a video)
     -   [] Find the hosting where the school can host the website
 -   [] Create new screenshots of **Kaoula** to `Readme.md`
@@ -36,8 +37,9 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [] Cath errors on routes (important)
 -   [] Make messages dashboard
     -   [] Create messages page much better with new features, fx: leave message thread, invite new memebers.
+    -   [] Web Sockets Server for messages so its real time. (socket.io)
 -   [x] Add teacher when create an class
 -   [x] (MBY) remove the select users when create an class
 -   [] (MBY) create an badge on the teachers classes on the route `/classes`, fx "Ejer"
 -   [] **STYLES**:
-    -   [] Fix the scroll bar
+    -   [x] Fix the scroll bar
