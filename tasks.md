@@ -5,7 +5,8 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [x] Edit/Delete homework
 -   [] How be an teacher page to apply for it.
 -   [] Make the learn more page, with info about what **Kaoula** is.
--   [] Create an guide to host your own kaoula for your school.
+-   [] Create an guide to host your own kaoula for your school. (Mby a video)
+    - [] Find the hosting where the school can host the website
 -   [] Create new screenshots of **Kaoula** to `Readme.md`
 -   [x] Create a loading spinner for pages.
 -   [x] Reset invite when change the class visibility.
