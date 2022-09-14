@@ -5,9 +5,23 @@
     --light-color: #ffffff;
     --green-color: #3cb35a;
     --danger-color: #f66b6b;
+    --yellow-color: rgb(249, 231, 65);
 }
 
-/* Disabled */
+/* Scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 body {
     background-color: var(--dark-color);
