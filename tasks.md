@@ -6,7 +6,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [] How be an teacher page to apply for it.
 -   [] Make the learn more page, with info about what **Kaoula** is.
 -   [] Create an guide to host your own kaoula for your school. (Mby a video)
-    - [] Find the hosting where the school can host the website
+    -   [] Find the hosting where the school can host the website
 -   [] Create new screenshots of **Kaoula** to `Readme.md`
 -   [x] Create a loading spinner for pages.
 -   [x] Reset invite when change the class visibility.
@@ -38,3 +38,6 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
     -   [] Create messages page much better with new features, fx: leave message thread, invite new memebers.
 -   [x] Add teacher when create an class
 -   [x] (MBY) remove the select users when create an class
+-   [] (MBY) create an badge on the teachers classes on the route `/classes`, fx "Ejer"
+-   [] **STYLES**:
+    -   [] Fix the scroll bar
