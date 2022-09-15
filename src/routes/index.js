@@ -294,6 +294,36 @@ router.post(
     }
 );
 
+// Ban a user from a class
+router.post(
+    "/classes/:id/banUser",
+    ensureAuth,
+    ensureTeacher,
+    async (req, res) => {
+        Class.findByIdAndUpdate(
+            { _id: req.params.id },
+            {
+                $push: { bans: req.body.uid },
+                $pull: { students: req.body.uid },
+            },
+            { new: true },
+            (err, classData) => {
+                if (err) {
+                    res.redirect(
+                        "/classes?error=true&error_id=3&error_message=Error removing student"
+                    );
+                } else {
+                    res.redirect(
+                        "/classes/" +
+                            classData._id +
+                            "?success=true&success_message=Student removed from class"
+                    );
+                }
+            }
+        );
+    }
+);
+
 // New class
 router.post("/classes/new", ensureTeacher, ensureAuth, async (req, res) => {
     let { name, description, image, students, private, maxStudents } = req.body;
@@ -615,7 +645,12 @@ router.post("/profile/:id/update", ensureAuth, async (req, res) => {
         const newMessage = new Message({
             content,
             tid,
-            user: [req.user.name, req.user._id, req.user.avatar, req.user.uid],
+            user: [
+                req.user.username,
+                req.user._id,
+                req.user.avatar,
+                req.user.uid,
+            ],
         });
 
         await newMessage.save();

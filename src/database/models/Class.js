@@ -30,7 +30,7 @@ const ClassSchema = new mongoose.Schema(
             ref: "User",
         },
 
-        banned: {
+        bans: {
             type: [mongoose.Schema.Types.ObjectId],
             ref: "User",
         },

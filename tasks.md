@@ -7,7 +7,8 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [] Make the learn more page, with info about what **Kaoula** is.
 -   [] Make the footer better with links to different pages like messages or classes
 -   [] Create an guide to host your own kaoula for your school. (Mby a video)
-    -   [] Find the hosting where the school can host the website
+-   [] (IDEA) when hover over users username show a tooltip
+-   [] Find the hosting where the school can host the website
 -   [] Create new screenshots of **Kaoula** to `Readme.md`
 -   [x] Create a loading spinner for pages.
 -   [x] Reset invite when change the class visibility.
