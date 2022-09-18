@@ -3,6 +3,7 @@
 These are all tasks that will be worked on **Kaoula**. Create a pull request or a issue if you have an idea.
 
 -   [x] Edit/Delete homework
+-   [] Create the deploy scripts a little bit better with emojis
 -   [] How be an teacher page to apply for it.
 -   [] Make the learn more page, with info about what **Kaoula** is.
 -   [] Make the footer better with links to different pages like messages or classes
