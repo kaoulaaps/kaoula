@@ -10,7 +10,7 @@ const questions = [
     {
         type: "list",
         name: "action",
-        message: "What do you want to do?",
+        message: "⚙️ What do you want to do?",
         choices: ["Deploy", "Set New Secret Variable"],
     },
 ];
@@ -18,7 +18,7 @@ const questions = [
 inquirer.prompt(questions).then((answers) => {
     switch (answers.action) {
         case "Deploy":
-            console.log(chalk.green("Deploying..."));
+            console.log(chalk.green("📦 Deploying..."));
             try {
                 child_process.execSync("flyctl deploy", { stdio: "inherit" });
             } catch (error) {
@@ -33,13 +33,13 @@ inquirer.prompt(questions).then((answers) => {
                     {
                         type: "input",
                         name: "secret",
-                        message: "What is the name of the secret variable?",
+                        message: "🍺 What is the name of the secret variable?",
                     },
 
                     {
                         type: "input",
                         name: "value",
-                        message: "What is the value of the secret variable?",
+                        message: "🍺 What is the value of the secret variable?",
                     },
                 ])
                 .then((answers) => {
@@ -49,7 +49,7 @@ inquirer.prompt(questions).then((answers) => {
                             { stdio: "inherit" }
                         );
 
-                        console.log(chalk.green("Secret variable set!"));
+                        console.log(chalk.green("✅ Secret variable set!"));
                     } catch (error) {
                         console.log(chalk.red(error.message));
                     }
