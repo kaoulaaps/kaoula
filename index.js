@@ -20,8 +20,8 @@ const rateLimit = require("express-rate-limit");
 const allowlist = [`${process.env.MY_IP}`];
 
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 50,
+    windowMs: 1 * 60 * 1000,
+    max: 100,
     standardHeaders: true,
     legacyHeaders: false,
     skip: (request, response) => allowlist.includes(request.ip),
