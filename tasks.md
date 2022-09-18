@@ -4,7 +4,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 
 -   [x] Edit/Delete homework
 -   [x] Create the deploy scripts a little bit better with emojis
--   [] How be an teacher page to apply for it.
+-   [] How be an teacher page to apply for it. (Will not be worked on right now)
 -   [] Make the learn more page, with info about what **Kaoula** is.
 -   [] Make the footer better with links to different pages like messages or classes
 -   [] Create an guide to host your own kaoula for your school. (Mby a video)
@@ -19,7 +19,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
     -   [x] Create page for adminds
 -   [x] Alerts / Flash Messages
     -   [] Fix bug in the flash messages, in does not display when you use the `req.flash`
--   [] Ban Users From Classes
+-   [x] Ban Users From Classes
 -   [x] Invite links
     -   [x] Invite page under the class settings, fx: "Dette er dit invite" etc.
     -   [] Make the invites to a schema where we use the ref "Class"
