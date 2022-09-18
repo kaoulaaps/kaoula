@@ -3,7 +3,7 @@
 These are all tasks that will be worked on **Kaoula**. Create a pull request or a issue if you have an idea.
 
 -   [x] Edit/Delete homework
--   [] Create the deploy scripts a little bit better with emojis
+-   [x] Create the deploy scripts a little bit better with emojis
 -   [] How be an teacher page to apply for it.
 -   [] Make the learn more page, with info about what **Kaoula** is.
 -   [] Make the footer better with links to different pages like messages or classes
@@ -27,8 +27,8 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [x] Turn on and off private class in settings
 -   [] Create calender page
 -   [] Comments on posts in class overview (likes also)
-    - [] Create markdown support.
-    - [] Cool editor for the post text area
+    -   [] Create markdown support.
+    -   [] Cool editor for the post text area
 -   [] Check for max members in classes
 -   [] (IDEA) Emails, fx user banned or joined a class
 -   [] Change the "/classes/:id" routes to classId and not the automatically generation mongoDB id

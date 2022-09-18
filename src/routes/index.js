@@ -53,6 +53,10 @@ router.get(
                 res.redirect(
                     "/classes?error=true&error_id=1&error_message=Class not found!"
                 );
+            } else if (classData.bans.includes(req.user._id)) {
+                res.redirect(
+                    "/classes?error=true&error_id=4&error_message=Are are banned from this class"
+                );
             } else {
                 res.render("classes/show", {
                     isLoggedIn: req.isAuthenticated(),
@@ -212,6 +216,8 @@ router.get("/invite/:id", ensureAuth, async (req, res) => {
 
     if (!invite || invite == null) {
         res.redirect("/?error=Invite is invalid");
+    } else if (invite.bans.includes(req.user._id)) {
+        res.redirect("/classes?error=You are banned from this class");
     } else {
         res.redirect(`/classes/${invite._id}/join`);
     }

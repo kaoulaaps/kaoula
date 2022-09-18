@@ -9,6 +9,7 @@ specifiers:
   dotenv: ^14.3.2
   ejs: ^3.1.6
   express: ^4.17.2
+  express-rate-limit: ^6.6.0
   express-session: ^1.17.2
   fs-extra: ^9.0.1
   inquirer: 8.2.0
@@ -40,6 +41,7 @@ dependencies:
   dotenv: 14.3.2
   ejs: 3.1.8
   express: 4.18.1
+  express-rate-limit: 6.6.0_express@4.18.1
   express-session: 1.17.3
   fs-extra: 9.1.0
   inquirer: 8.2.0
@@ -802,6 +804,15 @@ packages:
   /exit/0.1.2:
     resolution: {integrity: sha512-Zk/eNKV2zbjpKzrsQ+n1G6poVbErQxJ0LBOJXaKZ1EViLzH+hrLu9cdXI4zw9dBQJslwBEpbQ2P1oS7nDxs6jQ==}
     engines: {node: '>= 0.8.0'}
+    dev: false
+
+  /express-rate-limit/6.6.0_express@4.18.1:
+    resolution: {integrity: sha512-HFN2+4ZGdkQOS8Qli4z6knmJFnw6lZed67o6b7RGplWeb1Z0s8VXaj3dUgPIdm9hrhZXTRpCTHXA0/2Eqex0vA==}
+    engines: {node: '>= 12.9.0'}
+    peerDependencies:
+      express: ^4 || ^5
+    dependencies:
+      express: 4.18.1
     dev: false
 
   /express-session/1.17.3:

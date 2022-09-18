@@ -15,6 +15,19 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const flash = require("connect-flash");
 const Logger = require("./src/utils/Logger");
+const rateLimit = require("express-rate-limit");
+
+const allowlist = [`${process.env.MY_IP}`];
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 50,
+    standardHeaders: true,
+    legacyHeaders: false,
+    skip: (request, response) => allowlist.includes(request.ip),
+});
+
+app.use(limiter);
 
 //  Middlewares & Sessions
 // Settings & Middlewares
