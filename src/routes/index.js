@@ -190,6 +190,9 @@ router.get(
                     students: await User.find({
                         _id: { $in: classData.students },
                     }),
+                    bannedUsers: await User.find({
+                        _id: { $in: classData.bans },
+                    }),
                     users: await User.find({}),
                     fag: fag,
                     classData: classData,
@@ -200,6 +203,7 @@ router.get(
                         new_student: req.query.action === "NEW_STUDENT",
                         delete_class: req.query.action === "DELETE_CLASS",
                         homework: req.query.action === "HOMEWORK",
+                        bans: req.query.action === "BANNED_USERS",
                         no_action_selcted: !req.query.action,
                     },
                 });
