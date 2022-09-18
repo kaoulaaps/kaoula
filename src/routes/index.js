@@ -190,7 +190,7 @@ router.get(
                     students: await User.find({
                         _id: { $in: classData.students },
                     }),
-                    bannedUsers: await User.find({
+                    bans: await User.find({
                         _id: { $in: classData.bans },
                     }),
                     users: await User.find({}),
@@ -296,7 +296,7 @@ router.post(
                     res.redirect(
                         "/classes/" +
                             classData._id +
-                            "?success=true&success_message=Student removed from class"
+                            "/settings?action=MANAGE_STUDENTS&success=true&success_message=Student removed from class"
                     );
                 }
             }
@@ -320,13 +320,41 @@ router.post(
             (err, classData) => {
                 if (err) {
                     res.redirect(
-                        "/classes?error=true&error_id=3&error_message=Error removing student"
+                        "/classes?error=true&error_id=3&error_message=Error baning student"
                     );
                 } else {
                     res.redirect(
                         "/classes/" +
                             classData._id +
-                            "?success=true&success_message=Student removed from class"
+                            "/settings?action=MANAGE_STUDENTS&success=true&success_message=Student removed from class"
+                    );
+                }
+            }
+        );
+    }
+);
+
+router.post(
+    "/classes/:id/removeBan",
+    ensureAuth,
+    ensureTeacher,
+    async (req, res) => {
+        Class.findByIdAndUpdate(
+            { _id: req.params.id },
+            {
+                $pull: { bans: req.body.uid },
+            },
+            { new: true },
+            (err, classData) => {
+                if (err) {
+                    res.redirect(
+                        "/classes?error=true&error_id=3&error_message=Error removeing ban"
+                    );
+                } else {
+                    res.redirect(
+                        "/classes/" +
+                            classData._id +
+                            "/settings?action=BANNED_USERS&success=true&success_message=Student is successfully removed from ban list"
                     );
                 }
             }
