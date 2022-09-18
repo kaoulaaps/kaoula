@@ -26,6 +26,8 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 -   [x] Turn on and off private class in settings
 -   [] Create calender page
 -   [] Comments on posts in class overview (likes also)
+    - [] Create markdown support.
+    - [] Cool editor for the post text area
 -   [] Check for max members in classes
 -   [] (IDEA) Emails, fx user banned or joined a class
 -   [] Change the "/classes/:id" routes to classId and not the automatically generation mongoDB id
