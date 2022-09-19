@@ -4,6 +4,9 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
 
 -   [x] Edit/Delete homework
 -   [x] Create the deploy scripts a little bit better with emojis
+-   [] Add images to classes
+    -   [] Upload image on settings page
+    -   [] Using the Imgbb API to upload the image and will return the img url, and that will be set on the `image: {type: String}` in Class.js model.
 -   [] How be an teacher page to apply for it. (Will not be worked on right now)
 -   [] Make the learn more page, with info about what **Kaoula** is.
 -   [] Make the footer better with links to different pages like messages or classes
