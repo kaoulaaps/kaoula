@@ -47,7 +47,7 @@ These are all tasks that will be worked on **Kaoula**. Create a pull request or 
     -   [] Display a "Beskeder" button
     -   [] Web Sockets Server for messages so its real time. (socket.io)
     -   [] Invite new mebers to the thread
-    -   [] Leave a thread
+    -   [] Delete a thread, but not for all the users. So basicly leave an thread.
     -   [] Fix when a thread is not found
     -   [] Emoji keyboard
     -   [] File upload

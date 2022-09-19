@@ -1,0 +1,19 @@
+<form class="mb-4 container" action="/messages/new" method="post">
+    <hr size="10" />
+
+    <input type="hidden" name="tid" value="<%= thread._id %>" />
+    <div class="form-group mb-2">
+        <textarea
+            class="form-control"
+            name="content"
+            rows="3"
+            style="width: 100%; height: 15%; resize: none"
+            required
+            placeholder="Skriv en besked som <%= user.name %>..."
+        ></textarea>
+    </div>
+
+    <button type="submit" id="messageSubmit" class="btn btn-mid btn-sm">
+        Send
+    </button>
+</form>
