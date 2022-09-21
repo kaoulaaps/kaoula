@@ -1,0 +1,45 @@
+<div
+    class="modal fade"
+    id="deleteThread"
+    tabindex="-1"
+    aria-labelledby="deleteThread"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">
+                    Du er ved at forlade <strong><%= thread.title %></strong>
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <p class="text-muted">
+                        Du der ved at forlade
+                        <strong><%= thread.title %></strong>, denne handling kan
+                        ikke fortrydes. Med mindre en person inviter dig igen.
+                    </p>
+                    <p></p>
+                    <hr />
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                    >
+                        <i class="fa-solid fa-x"></i> Nej ladvær
+                    </button>
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa-solid fa-check"></i>
+                        Ja forlad
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

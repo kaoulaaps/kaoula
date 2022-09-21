@@ -20,9 +20,11 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        <!-- Emojiarea -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Custom -->
         <link rel="stylesheet" href="../../style.css" />
-        <%- include("./_quill.ejs")  %> 
+
     </head>
     <body>
         <%- include("../components/spinner.ejs") %>
@@ -197,19 +199,32 @@
                                 <div class="container text-center mt-2 text-muted">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h3 class="text-dark"><%= thread.title %></h1>
-                                            <p class="text-muted fs-5">
-                                                <%= thread.subject %>
-                                            </p>
+                                            <h3 class="text-dark"><%= thread.subject %></h1>
 
-                                            Deltagere: <% threadUser.map((u) => { %> 
+                                            <p>Deltagere: <% threadUser.map((u) => { %> 
                                                 
                                                 <a  style="text-decoration: none;" href="/profile/<%= u.uid %>">@<%= u.username %></a>
 
                                                 <% }) %>
+                                            </p>
+
+                                            <hr />
+
+                                            <div>
+
+                                                <button data-bs-toggle="modal" data-bs-target="#deleteThread" class="text-danger" style="cursor: pointer; margin-left: 10px; background: none; border: none"><i class="fa-solid fa-trash-alt"></i></button>
+                                                <button data-bs-toggle="modal" data-bs-target="#inviteUser" class="text-muted" style="cursor: pointer; margin-left: 13px; background: none; border: none"><i class="fa-solid fa-user-plus"></i></button>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+
+                  
+                   <%- include("./_deleteThread.ejs") %>            
+                   <%- include("./_modalInvite.ejs") %>
 
                                 <div class="card-body">
                                     <% if (messages.length == 0) { %>
@@ -239,9 +254,10 @@
                                                     />
                                                     <a
                                                         href="/profile/<%= message.user[3] %>"
+                                                        style="text-decoration: none;"
                                                         class="small mb-0 ms-2"
-                                                        >@<%= message.user[0]
-                                                        %></a
+                                                        ><em>@<%= message.user[0]
+                                                        %></em></a
                                                     >
                                                     -
                                                 </div>
@@ -303,6 +319,6 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"
-        ></script>
+        ></script>   
     </body>
 </html>

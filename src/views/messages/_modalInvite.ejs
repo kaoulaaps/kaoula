@@ -1,0 +1,51 @@
+<div
+    class="modal fade"
+    id="inviteUser"
+    tabindex="-1"
+    aria-labelledby="inviteUser"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">Inviter en bruger</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <div class="form-group">
+                        <label for="inviteUser" class="text-muted mb-2"
+                            >Skriv et username på den person du vil inviter, fx
+                            dit: <strong><%= user.username %></strong></label
+                        >
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="classId"
+                            name="classId"
+                            placeholder="Skriv et username"
+                            required
+                        />
+                    </div>
+                    <hr />
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                    >
+                        Annuler
+                    </button>
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa-solid fa-hand-point-right"></i>
+                        Inviter Bruger
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
