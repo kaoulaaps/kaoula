@@ -3,6 +3,7 @@
 These are all tasks that will be worked on **Kaoula**. Create a pull request or a issue if you have an idea.
 
 -   [x] Edit/Delete homework
+-   [] Transwer owner in classes.
 -   [x] Create the deploy scripts a little bit better with emojis
 -   [] Add images to classes
     -   [] Upload image on settings page
