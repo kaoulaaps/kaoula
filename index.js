@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(
     cors({
-        origin: ["http://localhost:2000", "https://kaoula.fly.dev"],
+        origin: ["http://localhost:2000", "https://kaoula.hypll.org"],
         credentials: true,
     })
 );

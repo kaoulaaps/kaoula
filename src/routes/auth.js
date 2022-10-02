@@ -24,7 +24,7 @@ router.get(
         }
     ),
     function (req, res) {
-        res.redirect("/");
+        res.redirect("/classes");
     }
 );
 
