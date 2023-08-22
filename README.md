@@ -1,6 +1,8 @@
+
+
 <p align="center">
   <a href="https://kaoula.fly.dev">
-    <img src="https://kaoula.hypll.org/kaoula.png" alt="Kaoula logo" width="200" height="165">
+    <img src="https://avatars.githubusercontent.com/u/111463471?s=200&v=4" alt="Kaoula logo" width="200" height="165">
   </a>
 </p>
 
@@ -9,6 +11,8 @@
 <p align="center">
   Next Generation School Portal🚀
 <br>
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/EEF_It?referralCode=lasse)
 
 <div align="center">
 
